@@ -1,0 +1,3 @@
+C:/Users/leond/CLionProjects/TrainPlaneP1/cmake-build-debug/CMakeFiles/TrainPlaneP1.dir
+C:/Users/leond/CLionProjects/TrainPlaneP1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/leond/CLionProjects/TrainPlaneP1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
