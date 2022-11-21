@@ -38,6 +38,7 @@
 
 # Debug files
 *.dSYM/
+cmake-build-debug/
 *.su
 *.idb
 *.pdb
