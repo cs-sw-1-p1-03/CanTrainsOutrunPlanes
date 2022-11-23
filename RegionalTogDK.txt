@@ -1,0 +1,15 @@
+CPHAirport CopenhagenH 55 13 11.8
+CopenhagenH Roskilde 74 21 26
+Roskilde Ringsted 100 20 33.2
+Ringsted Slagelse 105 18 31.6
+Slagelse Nyborg 113 22 41.3
+Nyborg Odense 108 18 32.5
+Odense Middelfart 107 38 68
+Middelfart Fredericia 60 7 6.9
+Fredericia Vejle 84 18 25.3
+Vejle Skanderborg 109 34 61.7
+Skanderborg AarhusH 90 17 25.4
+AarhusH Langaa 101 29 46.9
+Langaa Hobro 108 25 45
+Hobro Skoerping 89 18 26.8
+Skoerping Aalborg 83 22 30.3
