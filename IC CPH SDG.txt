@@ -1,0 +1,11 @@
+CPHAirport CopenhagenH 30 24 12
+CopenhagenH Ringsted 102 35 59
+Ringsted Slagelse 105 18 32
+Slagelse Nyborg 112 22 41
+Nyborg Odense 130 15 32
+Odense Middelfart 177 23 68
+Middelfart Fredericia 30 14 7
+Fredericia Kolding 76 13 16
+Kolding Lunderskov 78 8 10
+Lunderskov Tinglev 101 36 61
+Tinglev 72 33 40
