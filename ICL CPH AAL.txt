@@ -1,0 +1,10 @@
+CPHAirport CopenhagenH 29.5 24 11.8
+CopenhagenH Odense 133.4337838 74 164.6
+Odense Fredericia	136.1787879 33 74.9
+Fredericia Vejle 101.16 15 25.3
+Vejle Horsens 115.6 16 30.82666667
+Horsens Skanderborg 115.6 16 30.82666667
+Skanderborg AarhusH 76.075 20	25.4
+AarhusH Randers 114 31 58.9
+Randers Hobro 123.90625	16 33.0
+Hobro Aalborg 118.0896552 29 57.1
