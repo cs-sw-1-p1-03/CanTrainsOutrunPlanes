@@ -5,7 +5,7 @@
 #include "interface.h"
 #include "string.h"
 
-// We choose to use a struct as its suitable for small data structures which wont be modified
+// We choose to use a struct as it's suitable for small data structures which won't be modified
 typedef struct {
     // The parameters follow the structure of the lists
     char departureCity[20];
@@ -16,104 +16,89 @@ typedef struct {
 
 }routeIntervals;
 
+typedef struct{
+    routeIntervals list[100];
+}list_t;
 
-void readRouteFromFiles(routeIntervals list[],int numberOfRoutes,FILE* routelist)
-{
+typedef struct{
+    FILE* file;
+    int length;
+}route_t;
+
+
+void readRouteFromFiles(routeIntervals list[], int numberOfRoutes,FILE* routeList) {
     char departureCity[20];
     char arrivalCity[20];
     double speed;
     int time;
     double distance;
 
-    for(int i = 0; i < numberOfRoutes; i++)
-    {
-        fscanf(routelist,"%s", departureCity);
-        fscanf(routelist," %s", arrivalCity);
-        fscanf(routelist," %lf", &speed);
-        fscanf(routelist," %d", &time);
-        fscanf(routelist," %lf", &distance);
+    for (int i = 0; i < numberOfRoutes; i++) {
+        fscanf(routeList, "%s", departureCity);
+        fscanf(routeList, " %s", arrivalCity);
+        fscanf(routeList, " %lf", &speed);
+        fscanf(routeList, " %d", &time);
+        fscanf(routeList, " %lf", &distance);
 
         // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
-        strcpy(list[i].departureCity,departureCity);
-        strcpy(list[i].arrivalCity,arrivalCity);
+        strcpy(list[i].departureCity, departureCity);
+        strcpy(list[i].arrivalCity, arrivalCity);
         // Here you can assign the values to new variables
         list[i].speed = speed;
         list[i].time = time;
         list[i].distance = distance;
+        }
     }
 
-   /* for(int i = 0; i < numberOfRoutes; i++)
-    {
-        printf("linje = %d %s %s %.2lf %d %.2lf\n",i, list[i].departureCity, list[i].arrivalCity, list[i].speed, list[i].time, list[i].distance);
-
-    }
-    printf("----------------\n");
-    */
-    }
-
-int main() {   /*
-    char departureCity[20]; // Assigning amount of characters, it did want to scan properly otherwise
-    char arrivalCity[20]; //                           --||--
-    interface(departureCity, arrivalCity); // We have added the interface function to a h file, and then we can call interface
-                                             // the same way we would call a strcmp or strlen
-     */
+void routesOpen(route_t routes[]){
     // Important to change working directory every time you run program
-    FILE *flightDistances = fopen("FlightDistances.txt", "r");
-    FILE *interCityCPHSDG = fopen("IC CPH SDG.txt", "r");
-    FILE *interCityLynCPHAAL = fopen("ICL CPH AAL.txt", "r");
-    FILE *interCityLynCPHSDG = fopen("ICL CPH SDG.txt", "r");
-    FILE *interCityCPHAAL = fopen("InterCity CPH AAL.txt", "r");
+    routes[0].file = fopen("FlightDistances.txt", "r");   routes[0].length = 5;
+    routes[1].file = fopen("IC CPH SDG.txt", "r");        routes[1].length = 11;
+    routes[2].file = fopen("ICL CPH AAL.txt", "r");       routes[2].length = 10;
+    routes[3].file = fopen("ICL CPH SDG.txt", "r");       routes[3].length = 7;
+    routes[4].file = fopen("InterCity CPH AAL.txt", "r"); routes[4].length = 14;
+}
 
-    routeIntervals routeInfo1[100];
-    routeIntervals routeInfo2[100];
-    routeIntervals routeInfo3[100];
-    routeIntervals routeInfo4[100];
+    void createListOfList(list_t listOfList[], int totalRoutes){
+
+        //totalRoutes = 5. our 5 lists of routes
+        route_t routes[totalRoutes]; //Creating an empty array of routes
+        routesOpen(routes); //opens the files with their length in spots of 0 to totalRoutes-1.
+
+            //Each list is read with their own route from 0-4
+            for (int  i = 0;  i < totalRoutes; i++) {
+                readRouteFromFiles(listOfList[i].list, routes[i].length, routes[i].file);
+                fclose(routes[i].file);
+            }
+
+            //prints for testing.
+            /*
+            for(int i = 0; i < totalRoutes; i++)
+            {
+                for(int j = 0; j < routes[i].length;j++) {
+                    printf("Line = %d %s %s %.2lf %d %.2lf\n", j, listOfList[i].list[j].departureCity, listOfList[i].list[j].arrivalCity, listOfList[i].list[j].speed,
+                           listOfList[i].list[j].time, listOfList[i].list[j].distance);
+                }
+                printf("----------------\n");
+            } */
+}
+
+int main() {
+    //Interface function
+    /*
+    char departureCity[20]; // Assigning amount of characters, it did want to scan properly otherwise
+    char arrivalCity[20];   //                           --||--
+    interface(departureCity, arrivalCity); // We have added the interface function to a h file, and then we can call interface
+                                           // the same way we would call a strcmp or strlen
+           */
+
+    int totalRoutes = 5;
+    list_t listOfList[totalRoutes];//Initializing a static array with the size of totalRoutes
+                                   //The list is defined as an array of arrays(routeIntervals)
+
+    createListOfList(listOfList,totalRoutes);
 
 
-    readRouteFromFiles(routeInfo1, 7, interCityLynCPHSDG);
-    readRouteFromFiles(routeInfo2, 10, interCityLynCPHAAL);
-    readRouteFromFiles(routeInfo3, 14, interCityCPHAAL);
-    readRouteFromFiles(routeInfo4, 11, interCityCPHSDG);
-
-    // listOfList[4]={routeIntervals ro
-    //uteInfo1[100],routeInfo2,routeInfo3,routeInfo4};
-
-    routeIntervals routeMaster[4][101];
-    routeMaster[1][1] = *routeInfo1;
-    routeMaster[2][1] = *routeInfo2;
-    routeMaster[3][1] = *routeInfo3;
-
-    routeMaster[1][100] = *routeInfo1;
-    routeMaster[2][100] = *routeInfo2;
-    routeMaster[3][100] = *routeInfo3;
-
-    readRouteFromFiles(&routeMaster[1][1-100], 11, interCityCPHSDG);
-
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 14; ++j) {
-            readRouteFromFiles(&routeMaster[i][j], 11, interCityCPHSDG);
-        }
-    }
-    printf("%s", routeMaster[0][5].departureCity);
-
-
-
-    //For at kunne bruge flere datatyper i samme array, skal man bruge en void-pointer-Array
-
-
-
-
-    for (int i = 0; i < 4; i++){
-        for (int j = 0; j < 1;j++){
-            readRouteFromFiles(j, 7, interCityLynCPHSDG);
-        }
-    }
-
-    fclose(flightDistances);
-    fclose(interCityCPHSDG);
-    fclose(interCityLynCPHAAL);
-    fclose(interCityLynCPHSDG);
-    fclose(interCityCPHAAL);
     return 0;
 }
 
