@@ -11,4 +11,4 @@
 //distanceFunctionTrain(listCities, startCity, endCity) {
 // startPositionLists = get(startCity, listCities)
 
-}
+//}
