@@ -8,4 +8,4 @@ Middelfart Fredericia 30 14 7
 Fredericia Kolding 76 13 16
 Kolding Lunderskov 78 8 10
 Lunderskov Tinglev 101 36 61
-Tinglev 72 33 40
+Tinglev Sonderborg 72 33 40
