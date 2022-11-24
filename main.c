@@ -6,6 +6,39 @@
 
 // void since using a char does not allow for multiple returns
 
+void readRouteFromFiles(routeIntervals list[],int numberOfRoutes,FILE* routelist)
+{
+    char departureCity[20];
+    char arrivalCity[20];
+    double speed;
+    int time;
+    double distance;
+
+    for(int i = 0; i < numberOfRoutes; i++)
+    {
+        fscanf(routelist,"%s", departureCity);
+        fscanf(routelist," %s", arrivalCity);
+        fscanf(routelist," %lf", &speed);
+        fscanf(routelist," %d", &time);
+        fscanf(routelist," %lf", &distance);
+
+        // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
+        strcpy(list[i].departureCity,departureCity);
+        strcpy(list[i].arrivalCity,arrivalCity);
+        // Here you can assign the values to new variables
+        list[i].speed = speed;
+        list[i].time = time;
+        list[i].distance = distance;
+    }
+
+   /* for(int i = 0; i < numberOfRoutes; i++)
+    {
+        printf("linje = %d %s %s %.2lf %d %.2lf\n",i, list[i].departureCity, list[i].arrivalCity, list[i].speed, list[i].time, list[i].distance);
+
+    }
+    printf("----------------\n");
+    */
+    }
 
 int main() {   /*
     char departureCity[20]; // Assigning amount of characters, it did want to scan properly otherwise
