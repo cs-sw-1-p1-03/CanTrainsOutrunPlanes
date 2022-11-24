@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Functiontype is void since using a char does not allow for multiple returns
+// Function type is void since using a char does not allow for multiple returns
 void interface(char departureCity[], char arrivalCity[])
 {
     printf("Hello User\n"

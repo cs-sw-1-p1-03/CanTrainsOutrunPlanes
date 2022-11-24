@@ -5,7 +5,17 @@
 #include "interface.h"
 #include "string.h"
 
-// void since using a char does not allow for multiple returns
+// We choose to use a struct as its suitable for small data structures which wont be modified
+typedef struct {
+    // The parameters follow the structure of the lists
+    char departureCity[20];
+    char arrivalCity[20];
+    double speed;
+    int time;
+    double distance;
+
+}routeIntervals;
+
 
 void readRouteFromFiles(routeIntervals list[],int numberOfRoutes,FILE* routelist)
 {
