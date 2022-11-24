@@ -3,6 +3,7 @@
 #include "distanceFunctionPlane.h"
 #include "distanceFunctionTrain.h"
 #include "interface.h"
+#include "string.h"
 
 // void since using a char does not allow for multiple returns
 
