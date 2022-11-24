@@ -8,7 +8,7 @@
 #endif //TRAINPLANEP1_DISTANCEFUNCTIONTRAIN_H
 
 
-distanceFunctionTrain(listCities, startCity, endCity) {
-startPositionLists = get(startCity, listCities)
+//distanceFunctionTrain(listCities, startCity, endCity) {
+// startPositionLists = get(startCity, listCities)
 
-}
+//}
