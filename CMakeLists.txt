@@ -3,4 +3,4 @@ project(TrainPlaneP1 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(TrainPlaneP1 main.c interface.h)
+add_executable(TrainPlaneP1 main.c interface.h distanceFunctionPlane.h getListOfLists.h)
