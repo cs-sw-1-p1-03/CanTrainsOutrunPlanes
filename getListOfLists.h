@@ -14,6 +14,10 @@ typedef struct {
 
 typedef struct{
     routeIntervals list[100];
+    int found;
+    int totalTime;
+    double totalDistance;
+    double averageSpeed;
 }list_t;
 
 typedef struct{
