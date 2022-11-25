@@ -75,7 +75,7 @@ int main() {
             for (int j = departureIndex; j > (departureIndex - arrivalIndex); j--) {
                 listOfList[i].totalTime += listOfList[i].list[j].time;
                 listOfList[i].totalDistance += listOfList[i].list[j].distance;
-                listOfList[i].averageSpeed = 
+                listOfList[i].averageSpeed =
             }
     }
     else if (departureIndex < arrivalIndex){
