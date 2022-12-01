@@ -34,7 +34,7 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
     double distance;
 
     for (int i = 0; i < numberOfRoutes; i++) {
-        fscanf(routeList, "%s", departureCity);
+        fscanf(routeList, " %s", departureCity);
         fscanf(routeList, " %s", arrivalCity);
         fscanf(routeList, " %lf", &speed);
         fscanf(routeList, " %d", &time);
