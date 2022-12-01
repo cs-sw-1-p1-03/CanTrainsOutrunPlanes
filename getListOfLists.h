@@ -7,7 +7,7 @@ typedef struct {
     char departureCity[20];
     char arrivalCity[20];
     double speed;
-    int time;
+    double time;
     double distance;
 
 }routeIntervals_t;

@@ -15,9 +15,10 @@ int main() {
 
     char departureCity[20]; // Assigning amount of characters, it did want to scan properly otherwise
     char arrivalCity[20];   //                           --||--
-    interface(departureCity, arrivalCity); // We have added the interface function to a h file, and then we can call interface
-                                           // the same way we would call a strcmp or strlen
-           */
+    interface(departureCity,
+              arrivalCity); // We have added the interface function to a h file, and then we can call interface
+    // the same way we would call a strcmp or strlen
+
 
     int totalRoutes = 5;
     list_t listOfList[totalRoutes];//Initializing a static array with the size of totalRoutes
@@ -51,6 +52,34 @@ int main() {
             }
             if (strcmp(listOfList[i].list[j].arrivalCity, arrivalCity) == 0) {
                 arrivalIndex = j;
+            }
+        }
+
+            if (departureIndex >= 0 && arrivalIndex >= 0) {
+                listOfList[i].found = 1;
+                //Adding parameters to the following struct to store information of the different stuff
+                if (departureIndex > arrivalIndex) {
+                    //then the list is upwards
+                    for (int k = departureIndex - 1; k > arrivalIndex + 0; k--) {
+                        listOfList[i].totalTime += listOfList[i].list[k].time;
+
+                        listOfList[i].totalDistance += listOfList[i].list[k].distance;
+
+                    }
+                    listOfList[i].averageSpeed = (listOfList[i].totalDistance / (listOfList[i].totalTime/60)) ;
+
+                }
+                else
+                {
+                    // list is read downwards
+                    for (int p = departureIndex; p < arrivalIndex + 1;p++) {
+
+                        listOfList[i].totalTime += listOfList[i].list[p].time;
+
+                        listOfList[i].totalDistance += listOfList[i].list[p].distance;
+                    }
+                    listOfList[i].averageSpeed = (listOfList[i].totalDistance / (listOfList[i].totalTime/60)) ;
+                }
             }
 
         printf("index %d and %d: ",departureIndex,arrivalIndex);
