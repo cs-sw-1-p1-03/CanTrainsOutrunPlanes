@@ -8,5 +8,9 @@ Skanderborg AarhusH 76.075 20	25.4
 AarhusH Randers 114 31 58.9
 Randers Hobro 123.90625	16 33.0
 Hobro Aalborg 118.0896552 29 57.1
+Aalborg
+
+
+
 
 
