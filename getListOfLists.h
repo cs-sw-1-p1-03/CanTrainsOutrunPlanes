@@ -26,7 +26,7 @@ typedef struct{
 }route_t;
 
 
-void readRouteFromFiles(routeIntervals list[], int numberOfRoutes,FILE* routeList) {
+void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* routeList) {
     char departureCity[20];
     char arrivalCity[20];
     double speed;
