@@ -13,7 +13,7 @@
 int main() {
     //Interface function
 
-    char departureCity[20]; // Assigning amount of characters, it did want to scan properly otherwise
+    char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
     char arrivalCity[20];   //                           --||--
     interface(departureCity,
               arrivalCity); // We have added the interface function to a h file, and then we can call interface
