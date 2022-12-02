@@ -2,11 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "string.h"
-//  Our libraries
+//  Our own libraries
 #include "distanceFunctionPlane.h"
 #include "distanceFunctionTrain.h"
 #include "interface.h"
 #include "getListOfLists.h"
+#include "readList.h"
+
 
 void readList(char arrivalCity[], char departureCity[], list_t listOfList[], int totalRoutes);
 
