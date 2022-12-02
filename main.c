@@ -8,7 +8,7 @@
 #include "interface.h"
 #include "getListOfLists.h"
 
-
+void readList(char arrivalCity[], char departureCity[], list_t listOfList[], int totalRoutes);
 
 int main() {
     //Interface function

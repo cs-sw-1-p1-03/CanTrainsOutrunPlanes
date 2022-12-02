@@ -18,11 +18,13 @@ typedef struct{
     double totalTime;
     double totalDistance;
     double averageSpeed;
+    double totalCO2;
 }list_t;
 
 typedef struct{
     FILE* file;
     int length;
+    char typeOfTransport[];
 }route_t;
 
 
