@@ -1,5 +1,5 @@
-CPH	AAL NA 239 45
-CPH	AAR NA 148 300
-CPH	BLL NA 221 350
-CPH	KRP NA 233 NA
-CPH	SGD NA 196 45
+CPHAirport Aalborg 1 45 239
+CPHAirport Aarhus 2 40 148
+CPHAirport Billund 3 350 221
+CPHAirport KRP 4 233 5
+CPHAirport Sonderborg 6 45 196

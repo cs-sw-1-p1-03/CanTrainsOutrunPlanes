@@ -19,7 +19,6 @@ int main() {
               arrivalCity); // We have added the interface function to a h file, and then we can call interface
     // the same way we would call a strcmp or strlen
 
-
     int totalRoutes = 5;
     list_t listOfList[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
@@ -27,68 +26,25 @@ int main() {
 
     createListOfList(listOfList, totalRoutes); //Fulfilling the list with the void function
 
+    readList(arrivalCity,departureCity,listOfList,totalRoutes); //Reading the list
 
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
-    // starting at -1 because our list elements start at 0. Starting at allows element at line 0 to be included
-    int departureIndex = -1;
-    int arrivalIndex = -1;
-    //Making sure that no list is found before we start searching.
-    for (int i = 0; i < totalRoutes; i++) {
-        listOfList[i].found = 0;
-    }
-    for (int i = 0; i < totalRoutes; i++) {
-        listOfList[i].totalTime = 0;
-        listOfList[i].totalDistance = 0;
-        listOfList[i].averageSpeed = 0;
-    }
+    //CO2 Footprint per person km
+    int interCityLyn = 65;
+    int interCity = 47;
+    int averageFlight = 111;
 
-
-    for (int i = 0; i < totalRoutes; i++) {           //for every list
-        for (int j = 0; j < routes[i].length; j++) { //for every line
-            if (strcmp(listOfList[i].list[j].departureCity, departureCity) == 0) {
-                departureIndex = j;
-            }
-            if (strcmp(listOfList[i].list[j].arrivalCity, arrivalCity) == 0) {
-                arrivalIndex = j;
-            }
+    for (int i = 0; i < totalRoutes; ++i) {
+        for (int j = 0; j < ; ++j) {
+            if (strcmp(routes[i].typeOfTransport, "")
         }
-
-            if (departureIndex >= 0 && arrivalIndex >= 0) {
-                listOfList[i].found = 1;
-                //Adding parameters to the following struct to store information of the different stuff
-                if (departureIndex > arrivalIndex) {
-                    //then the list is upwards
-                    for (int k = departureIndex - 1; k > arrivalIndex + 0; k--) {
-                        listOfList[i].totalTime += listOfList[i].list[k].time;
-
-                        listOfList[i].totalDistance += listOfList[i].list[k].distance;
-
-                    }
-                    listOfList[i].averageSpeed = (listOfList[i].totalDistance / (listOfList[i].totalTime/60)) ;
-
-                }
-                else
-                {
-                    // list is read downwards
-                    for (int p = departureIndex; p < arrivalIndex + 1;p++) {
-
-                        listOfList[i].totalTime += listOfList[i].list[p].time;
-
-                        listOfList[i].totalDistance += listOfList[i].list[p].distance;
-                    }
-                    listOfList[i].averageSpeed = (listOfList[i].totalDistance / (listOfList[i].totalTime/60)) ;
-                }
-            }
-
-        printf("index %d and %d: ",departureIndex,arrivalIndex);
-
-        printf("list: %d. totalTime =  %lf totalDistance =  %lf averageSpeed = %lf\n", i, listOfList[i].totalTime,
-               listOfList[i].totalDistance, listOfList[i].averageSpeed);
-        // resetting so Indexes are no longer equal to j
-        departureIndex = -1;
-        arrivalIndex = -1;
     }
 
+
+
+    int carbonEmission = listOfList[i].totalDistance * ;
 }
+
+
