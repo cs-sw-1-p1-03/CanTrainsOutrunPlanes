@@ -29,8 +29,7 @@ typedef struct{
 
 
 void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* routeList) {
-
-    for (int i = 0; i < numberOfRoutes; i++) {
+    for(int i = 0; i < numberOfRoutes; i++) {
 
         fscanf(routeList, "%s", list[i].departureCity);
         fscanf(routeList, " %s", list[i].arrivalCity);
