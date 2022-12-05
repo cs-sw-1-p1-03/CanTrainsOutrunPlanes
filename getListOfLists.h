@@ -56,6 +56,8 @@ char routeFileNames[100][100] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH
 
 void readFile(char fileName[],routeIntervals_t route[]){
 
+
+
     FILE* file = fopen(fileName,"r");
     if(!(file)){
         EXIT_FAILURE;
