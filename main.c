@@ -3,14 +3,12 @@
 #include <stdlib.h>
 #include "string.h"
 //  Our own libraries
-#include "distanceFunctionPlane.h"
-#include "distanceFunctionTrain.h"
 #include "interface.h"
 #include "getListOfLists.h"
 #include "readList.h"
 
 
-void readList(char arrivalCity[], char departureCity[], list_t listOfList[], int totalRoutes);
+void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
 
 int main() {
     //Interface function
@@ -27,9 +25,9 @@ int main() {
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
 
-    createListOfList(listOfList, totalRoutes); //Fulfilling the list with the void function
+    createArrayOfRoutes(arrayOfRoutes, totalRoutes); //Fulfilling the list with the void function
 
-    readList(arrivalCity,departureCity,listOfList,totalRoutes); //Reading the list
+    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
 
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up

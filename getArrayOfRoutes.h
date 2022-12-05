@@ -32,11 +32,11 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
 
     for (int i = 0; i < numberOfRoutes; i++) {
 
-            fscanf(routeList, " %s", list[i].departureCity);
-            fscanf(routeList, " %s", list[i].arrivalCity);
-            fscanf(routeList, " %lf", &list[i].speed);
-            fscanf(routeList, " %lf", &list[i].time);
-            fscanf(routeList, " %lf", &list[i].distance);
+        fscanf(routeList, " %s", list[i].departureCity);
+        fscanf(routeList, " %s", list[i].arrivalCity);
+        fscanf(routeList, " %lf", &list[i].speed);
+        fscanf(routeList, " %lf", &list[i].time);
+        fscanf(routeList, " %lf", &list[i].distance);
 
         // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
         // Here you can assign the values to new variables
@@ -55,9 +55,6 @@ void routesFilesOpen(route_t routes[]){
 char routeFileNames[100][100] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt","InterCity CPH AAL.txt"};
 
 void readFile(char fileName[],routeIntervals_t route[]){
-
-
-
     FILE* file = fopen(fileName,"r");
     if(!(file)){
         EXIT_FAILURE;
@@ -79,7 +76,6 @@ void readFile(char fileName[],routeIntervals_t route[]){
     while ((c = fgetc(file)) != EOF)
     {
         readRouteFromFiles(route,12, file);
-
     }
     if (feof(file))
     {
