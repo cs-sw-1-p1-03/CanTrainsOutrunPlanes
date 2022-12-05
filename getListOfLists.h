@@ -27,93 +27,102 @@ typedef struct{
     char typeOfTransport[];
 }route_t;
 
+int countLines(FILE*);
 
-void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* routeList) {
+void readRouteFromFiles(routeIntervals_t list[],int size, FILE* routeList) {
+    //routeList = fopen("IC CPH SDG.txt", "r");
 
-    for (int i = 0; i < numberOfRoutes; i++) {
+    for (int i = 0; i < size; i++) {
 
-            fscanf(routeList, " %s", list[i].departureCity);
-            fscanf(routeList, " %s", list[i].arrivalCity);
-            fscanf(routeList, " %lf", &list[i].speed);
-            fscanf(routeList, " %lf", &list[i].time);
-            fscanf(routeList, " %lf", &list[i].distance);
+    fscanf(routeList, " %s", list[i].departureCity);
+    fscanf(routeList, " %s", list[i].arrivalCity);
+    fscanf(routeList, " %lf", &list[i].speed);
+    fscanf(routeList, " %lf", &list[i].time);
+    fscanf(routeList, " %lf", &list[i].distance);
 
-        // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
-        // Here you can assign the values to new variables
-    }
 }
 
-void routesFilesOpen(route_t routes[]){
-    // Important to change working directory every time you run program
-    routes[0].file = fopen("FlightDistances.txt", "r");   routes[0].length = 5;strcpy(routes[0].typeOfTransport,"Airplane");
-    routes[1].file = fopen("IC CPH SDG.txt", "r");        routes[1].length = 13;strcpy(routes[1].typeOfTransport,"InterCity");
-    routes[2].file = fopen("ICL CPH AAL.txt", "r");       routes[2].length = 12;strcpy(routes[2].typeOfTransport,"InterCityLyn");
-    routes[3].file = fopen("ICL CPH SDG.txt", "r");       routes[3].length = 9;strcpy(routes[3].typeOfTransport,"InterCityLyn");
-    routes[4].file = fopen("InterCity CPH AAL.txt", "r"); routes[4].length = 16;strcpy(routes[4].typeOfTransport,"InterCity");
+
+
+    // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
+    // Here you can assign the values to new variables
 }
 
+// allocating file names in array to avoid opening all files at once
 char routeFileNames[100][100] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt","InterCity CPH AAL.txt"};
 
-void readFile(char fileName[],routeIntervals_t route[]){
 
 
+void routesFilesOpen(route_t routes[]){
 
-    FILE* file = fopen(fileName,"r");
-    if(!(file)){
-        EXIT_FAILURE;
-    }
-
-    fseek(file, 0, SEEK_END);
-    long size = ftell(file);
-    fseek(file, 0, SEEK_SET);
-
-    while(1) {
-
-        if(ftell(file) == size) {
-            break;
-        }
-        readRouteFromFiles(route,12, file);
-    }
-    //_----------------------------______
-    int c;
-    while ((c = fgetc(file)) != EOF)
-    {
-        readRouteFromFiles(route,12, file);
-
-    }
-    if (feof(file))
-    {
-        printf("Lines: %d",c);
-    }
-    else
-    {
-        printf("SOMETHING IS WRONG INSIDE THE FILE!");
-        EXIT_FAILURE;
+    // Important to change working directory every time you run program
+    // Opens files and copies over to variables in the program
+   for (int i = 0; i < 5; ++i) {
+        routes[i].file = fopen(routeFileNames[i],"r");
+       if (!(routes[i].file)) {
+           EXIT_FAILURE;
+       }
+        routes[i].length = countLines(routes[i].file);
+        fclose(routes[i].file);
     }
 }
 
+void readFile(char fileName[], routeIntervals_t route[]) {
+
+    // -------------- If file doesnt open, exits the program----------------
+    FILE *file = fopen(fileName, "r");
+
+
+        readRouteFromFiles(route, 16 ,file);
+
+}
+
+int countLines(FILE *file){
+    int ch = 0, lines = 0;
+    //fopen(file, "r");
+
+    while(!feof(file))
+    {
+        ch = fgetc(file);
+        if(ch == '\n')
+        {
+            lines++;
+        }
+    }
+    lines++;
+    return lines;
+}
 
 void createListOfList(list_t listOfList[], int totalRoutes){
 
     //totalRoutes = 5. our 5 lists of routes
-    route_t routes[totalRoutes]; //Creating an empty array of routes
-    routesFilesOpen(routes); //opens the 5 files and their length in spots of 0 to totalRoutes-1.
+    //route_t routes[totalRoutes]; //Creating an empty array of routes
+    //routesFilesOpen(routes); //opens the 5 files and their length in spots of 0 to totalRoutes-1.
 
     //Each list is read with their own route from 0-4
+    /*
     for (int  i = 0;  i < totalRoutes; i++) {
         readRouteFromFiles(listOfList[i].list, routes[i].length, routes[i].file);
         fclose(routes[i].file);
+    } */
+
+
+    for (int i = 0; i < totalRoutes; i++) {
+
+        readFile(routeFileNames[i], listOfList[i].list);
+      //  printf("yo %s \n",routeFileNames[i]);
     }
+
 
     //prints for testing.
 /*
-            for(int i = 0; i < totalRoutes; i++)
-            {
-                for(int j = 0; j < routes[i].length;j++) {
-                    printf("Line = %d %s %s %.2lf %d %.2lf\n", j, listOfList[i].list[j].departureCity, listOfList[i].list[j].arrivalCity, listOfList[i].list[j].speed,
-                           listOfList[i].list[j].time, listOfList[i].list[j].distance);
-                }
-                printf("----------------\n");
-            }
+    for(int i = 0; i < totalRoutes; i++)
+    {
+        for(int j = 0; j < routes[i].length;j++) {
+            printf("Line = %d %s %s %.2lf %lf %.2lf\n", j, listOfList[i].list[j].departureCity, listOfList[i].list[j].arrivalCity, listOfList[i].list[j].speed,
+                   listOfList[i].list[j].time, listOfList[i].list[j].distance);
+        }
+        printf("----------------\n");
+    }
 */
- }
+}

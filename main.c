@@ -27,12 +27,14 @@ int main() {
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
 
+    route_t routes[totalRoutes]; //Creating an empty array of routes
+    routesFilesOpen(routes); //Filling it up
+
     createListOfList(listOfList, totalRoutes); //Fulfilling the list with the void function
 
     readList(arrivalCity,departureCity,listOfList,totalRoutes); //Reading the list
 
-    route_t routes[totalRoutes]; //Creating an empty array of routes
-    routesFilesOpen(routes); //Filling it up
+
 
     //CO2 Footprint per person km
     int interCityLyn = 65;
