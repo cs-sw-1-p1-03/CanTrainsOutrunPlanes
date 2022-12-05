@@ -29,26 +29,17 @@ typedef struct{
 
 
 void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* routeList) {
-    char departureCity[20];
-    char arrivalCity[20];
-    double speed;
-    int time;
-    double distance;
 
     for (int i = 0; i < numberOfRoutes; i++) {
-        fscanf(routeList, " %s", departureCity);
-        fscanf(routeList, " %s", arrivalCity);
-        fscanf(routeList, " %lf", &speed);
-        fscanf(routeList, " %d", &time);
-        fscanf(routeList, " %lf", &distance);
+
+            fscanf(routeList, " %s", list[i].departureCity);
+            fscanf(routeList, " %s", list[i].arrivalCity);
+            fscanf(routeList, " %lf", &list[i].speed);
+            fscanf(routeList, " %lf", &list[i].time);
+            fscanf(routeList, " %lf", &list[i].distance);
 
         // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
-        strcpy(list[i].departureCity, departureCity);
-        strcpy(list[i].arrivalCity, arrivalCity);
         // Here you can assign the values to new variables
-        list[i].speed = speed;
-        list[i].time = time;
-        list[i].distance = distance;
     }
 }
 
@@ -60,6 +51,45 @@ void routesFilesOpen(route_t routes[]){
     routes[3].file = fopen("ICL CPH SDG.txt", "r");       routes[3].length = 9;strcpy(routes[3].typeOfTransport,"InterCityLyn");
     routes[4].file = fopen("InterCity CPH AAL.txt", "r"); routes[4].length = 16;strcpy(routes[4].typeOfTransport,"InterCity");
 }
+
+char routeFileNames[100][100] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt","InterCity CPH AAL.txt"};
+
+void readFile(char fileName[],routeIntervals_t route[]){
+
+    FILE* file = fopen(fileName,"r");
+    if(!(file)){
+        EXIT_FAILURE;
+    }
+
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    while(1) {
+
+        if(ftell(file) == size) {
+            break;
+        }
+        readRouteFromFiles(route,12, file);
+    }
+    //_----------------------------______
+    int c;
+    while ((c = fgetc(file)) != EOF)
+    {
+        readRouteFromFiles(route,12, file);
+
+    }
+    if (feof(file))
+    {
+        printf("Lines: %d",c);
+    }
+    else
+    {
+        printf("SOMETHING IS WRONG INSIDE THE FILE!");
+        EXIT_FAILURE;
+    }
+}
+
 
 void createListOfList(list_t listOfList[], int totalRoutes){
 

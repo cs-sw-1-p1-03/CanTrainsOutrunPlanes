@@ -22,6 +22,7 @@ int main() {
     // the same way we would call a strcmp or strlen
 
     int totalRoutes = 5;
+    //array for routes
     list_t listOfList[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
@@ -39,14 +40,16 @@ int main() {
     int averageFlight = 111;
 
     for (int i = 0; i < totalRoutes; ++i) {
-        for (int j = 0; j < ; ++j) {
-            if (strcmp(routes[i].typeOfTransport, "")
+        for (int j = 0; j < totalRoutes; ++j) {
+            if (strcmp(routes[i].typeOfTransport, "Airplane")==0){
+                int h;
+            }
         }
     }
 
 
 
-    int carbonEmission = listOfList[i].totalDistance * ;
+   // int carbonEmission = listOfList[i].totalDistance * ;
 }
 
 
