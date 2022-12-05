@@ -12,7 +12,6 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
 
 int main() {
     //Interface function
-
     char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
     char arrivalCity[20];   //                           --||--
     interface(departureCity,
