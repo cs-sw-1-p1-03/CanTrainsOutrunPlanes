@@ -36,22 +36,52 @@ int main() {
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
-    //CO2 Footprint per person km
-    int interCityLyn = 65;
-    int interCity = 47;
-    int averageFlight = 111;
+    co2Multiplier(routes, arrayOfRoutes, totalRoutes);
 
-    for (int i = 0; i < totalRoutes; ++i) {
-        for (int j = 0; j < totalRoutes; ++j) {
-            if (strcmp(routes[i].typeOfTransport, "Airplane")==0){
-                int h;
-            }
+    char transport[10];
+    int distanceFromStation, distanceFromAirport;
+    printf("Are you taking the airplane or train");
+    scanf("%s",transport);
+    printf("Type your distance from train station and airport");
+    scanf("%d %d", &distanceFromStation,&distanceFromAirport);
+
+   //calculate();
+    double walkResult, averageWalkSpeed = 5, busResult, averageBusSpeed = 50;
+    double walkCO2 = 0, busCo2;
+    double totalTimeBus, totalTimeWalk;
+    char typeOfTransport[100];
+
+    if (strcmp(transport,"train") == 0)
+    {
+        printf("This is how long it will take you to get to the train station:\n");
+        printf("Walking ->");
+        walkResult = (distanceFromStation * 1 / averageWalkSpeed)*60;
+        printf("%lf min.\n", walkResult);
+        printf("Bus ->");
+        busResult = (distanceFromStation * 1 / averageBusSpeed)*60;
+        busCo2 = busCo2 * distanceFromStation;
+        printf("%lf min.\n",busResult);
+
+        for (int i = 1; i < totalRoutes; ++i) {
+            totalTimeWalk = arrayOfRoutes[i].totalTime + walkResult;
+            totalTimeBus = arrayOfRoutes[i].totalTime + busResult;
+            strcpy(typeOfTransport, routes[i].typeOfTransport);
+            if (arrayOfRoutes[i].found == 1) {
+            printf("Train type %s to %s. Total: %lf minutes by walking\n"
+                   "                             Total: %lf minutes by bus\n", typeOfTransport, arrivalCity,
+                   totalTimeWalk, totalTimeBus);
+             }
         }
+
+    } else if  (strcmp(transport,"airplane") == 0)
+    {
+        printf("This is how long it will take you to get to the Airport:");
+        printf("Walking ->");
+        walkResult = distanceFromAirport * 1 / averageWalkSpeed;
+        printf("%d \n", walkResult);
+        printf("Bus ->");
+        busResult = distanceFromAirport * 1 / averageBusSpeed;
+        busCo2 = busCo2 * distanceFromAirport;
+        printf("%d \n",busResult);
     }
-
-
-
-   // int carbonEmission = listOfList[i].totalDistance * ;
 }
-
-
