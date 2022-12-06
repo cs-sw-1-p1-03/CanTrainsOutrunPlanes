@@ -3,6 +3,7 @@ void readList(char arrivalCity[], char departureCity[], list_t listOfList[], int
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
+
     // starting at -1 because our list elements start at 0. Starting at allows element at line 0 to be included
     int departureIndex = -1;
     int arrivalIndex = -1;
