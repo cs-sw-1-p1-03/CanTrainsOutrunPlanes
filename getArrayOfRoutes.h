@@ -24,7 +24,6 @@ typedef struct{
 typedef struct{
     FILE* file;
     int length;
-    char typeOfTransport[];
 }route_t;
 
 char fileName[5][50] = {"FlightDistances.txt","IC CPH AAL.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt"};

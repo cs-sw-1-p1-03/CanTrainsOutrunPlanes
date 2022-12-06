@@ -31,7 +31,7 @@ int main() {
     routesFilesOpen(routes); //Filling it up
 
     //CO2 Footprint per person km
-    int interCityLyn = 65;
+    int interCityLyn = 56;
     int interCity = 47;
     int averageFlight = 111;
 
