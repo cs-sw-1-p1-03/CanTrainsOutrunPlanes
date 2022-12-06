@@ -19,24 +19,33 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
     }
 
     for (int i = 0; i < 1; i++) {
+
         for (int j = 0; j < routes[i].length; j++) { //for every line
-            if (strcmp(arrayOfRoutes[i].list[j].departureCity, departureCity) == 0 && strcmp(arrayOfRoutes[i].list[j].arrivalCity, arrivalCity) == 0 ) {
+            if ((strcmp(arrayOfRoutes[i].list[j].departureCity, departureCity) == 0 &&
+                 strcmp(arrayOfRoutes[i].list[j].arrivalCity, arrivalCity) == 0) ||
+                (strcmp(arrayOfRoutes[i].list[j].arrivalCity, departureCity) == 0 &&
+                 strcmp(arrayOfRoutes[i].list[j].departureCity, arrivalCity) == 0)) {
                 arrayOfRoutes[i].found = 1;
-                departureIndex = j; arrivalIndex = j; // checks that it is true for both departure and arrival before moving on with calculations
+                departureIndex = j;
+                arrivalIndex = j; // checks that it is true for both departure and arrival before moving on with calculations
             }
         }
 
-        arrayOfRoutes[i].totalTime = arrayOfRoutes[i].list[departureIndex].time;
+        if (arrayOfRoutes[i].found == 1) {
+            arrayOfRoutes[i].totalTime = arrayOfRoutes[i].list[departureIndex].time;
             // Accumulating the distance of all stops along the way, to determine the length of the route
             arrayOfRoutes[i].totalDistance = arrayOfRoutes[i].list[departureIndex].distance;
 
-        arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance / (arrayOfRoutes[i].totalTime / 60));
+            arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance / (arrayOfRoutes[i].totalTime / 60));
 
-        printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
+            printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
 
-        printf("list: %d. totalTime =  %lf | totalDistance =  %lf | averageSpeed = %lf\n", i,
-               arrayOfRoutes[i].totalTime,
-               arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
+            printf("type: %s. totalTime =  %lf | totalDistance =  %lf | averageSpeed = %lf\n", routes[i].typeOfTransport,
+                   arrayOfRoutes[i].totalTime,
+                   arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
+        }
+
+
         departureIndex = -1;
         arrivalIndex = -1;
     }
@@ -64,7 +73,8 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
                         // Accumulating the distance of all stops along the way, to determine the length of the route
                         arrayOfRoutes[i].totalDistance += arrayOfRoutes[i].list[k].distance;
                     }
-                    arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance / (arrayOfRoutes[i].totalTime / 60));
+                    arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance /
+                                                     (arrayOfRoutes[i].totalTime / 60));
                 } else {
                     // list is read downwards
                     for (int p = departureIndex; p < arrivalIndex + 1; p++) {
@@ -74,17 +84,19 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
                         arrayOfRoutes[i].totalDistance += arrayOfRoutes[i].list[p].distance;
                     }
                     // Calculating the average speed across the given route
-                    arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance / (arrayOfRoutes[i].totalTime / 60));
+                    arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance /
+                                                     (arrayOfRoutes[i].totalTime / 60));
                 }
+
+
+                printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
+
+                printf("type: %s. totalTime =  %lf | totalDistance =  %lf | averageSpeed = %lf\n", routes[i].typeOfTransport,
+                       arrayOfRoutes[i].totalTime,
+                       arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
+                // Resetting so Indexes are no longer equal to j
             }
 
-
-            printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
-
-            printf("list: %d. totalTime =  %lf | totalDistance =  %lf | averageSpeed = %lf\n", i,
-                   arrayOfRoutes[i].totalTime,
-                   arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
-            // Resetting so Indexes are no longer equal to j
             departureIndex = -1;
             arrivalIndex = -1;
         }

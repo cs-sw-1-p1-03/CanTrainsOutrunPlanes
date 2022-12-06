@@ -24,7 +24,7 @@ typedef struct{
 typedef struct{
     FILE* file;
     int length;
-    char typeOfTransport[];
+    char typeOfTransport[100];
 }route_t;
 
 
