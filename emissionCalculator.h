@@ -1,16 +1,9 @@
-
-// -------------Concept that turned out to be difficult, will be solved easier way, this will be explored if enough time ----
-
 #include "stdio.h"
 
 
 #define ICLem 56 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
 #define ICem 47 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
 #define Planeem 111 // An average of (grams/Co2/passenger/kilometer) taken from "SAS årsrapport"
-
-
-
-
 
 void co2Multiplier(route_t routes[], list_t arrayOfRoutes[],int totalRoutes) {
 
