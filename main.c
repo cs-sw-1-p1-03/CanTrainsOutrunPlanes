@@ -5,7 +5,12 @@
 //  Our own libraries
 #include "interface.h"
 #include "getArrayOfRoutes.h"
-#include "readList.h"
+#include "searchRoutes.h"
+#include "emissionCalculator.h"
+
+#define ICLem 56 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
+#define ICem 47 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
+#define Planeem 111 // An average of (grams/Co2/passenger/kilometer) taken from "SAS årsrapport"
 
 
 void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
