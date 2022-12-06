@@ -30,6 +30,8 @@ int main() {
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
+    typeOfTransport(arrayOfRoutes, fileName);
+/*
     //CO2 Footprint per person km
     int interCityLyn = 56;
     int interCity = 47;
@@ -54,7 +56,7 @@ int main() {
         }
     }
 
-
+*/
    // int carbonEmission = listOfList[i].totalDistance * ;
 }
 
