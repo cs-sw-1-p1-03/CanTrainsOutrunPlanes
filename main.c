@@ -7,7 +7,7 @@
 #include "getArrayOfRoutes.h"
 #include "searchRoutes.h"
 
-void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
+void searchRoutes(char arrivalCity[], char departureCity[], arrayOfRoutes_t arrayOfRoutes[], int totalRoutes);
 
 int main() {
     //Interface function
@@ -19,11 +19,11 @@ int main() {
 
     int totalRoutes = 5;
     //array for routes
-    list_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
+    arrayOfRoutes_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
 
-    createArrayOfRoutes(arrayOfRoutes, totalRoutes); //Fulfilling the list with the void function
+    createArrayOfRoutes(arrayOfRoutes); //Fulfilling the list with the void function
 
     searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
 
@@ -43,6 +43,16 @@ int main() {
         }
     }
 
+    int totalTransport = 3;
+
+    char typeOfTransport[3][20] = {"Pla","IC","ICL"};
+    int CO2[3] = {53,53,53};
+
+    for (int i = 0; i < totalTransport; i++){
+        if (strcpy(type,typeOfTransport[i])){
+            result = distance * CO2[i]
+        }
+    }
 
 
    // int carbonEmission = listOfList[i].totalDistance * ;

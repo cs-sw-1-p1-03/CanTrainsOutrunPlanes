@@ -19,7 +19,8 @@ typedef struct{
     double totalDistance;
     double averageSpeed;
     double totalCO2;
-}list_t;
+    char typeOfTransport[];
+}arrayOfRoutes_t;
 
 typedef struct{
     FILE* file;
@@ -52,7 +53,7 @@ void routesFilesOpen(route_t routes[]){
     }
 }
 
-void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
+void createArrayOfRoutes(arrayOfRoutes_t arrayOfRoutes[]){
 
     //totalRoutes = 5. our 5 lists of routes
     route_t routes[totalRoutes]; //Creating an empty array of routes
@@ -60,7 +61,7 @@ void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
 
     //Each list is read with their own route from 0-4
     for (int  i = 0;  i < totalRoutes; i++) {
-        readRouteFromFiles(listOfList[i].list, routes[i].length, routes[i].file);
+        readRouteFromFiles(arrayOfRoutes[i].list, routeLength[i], routes[i].file);
         fclose(routes[i].file);
     }
 }
