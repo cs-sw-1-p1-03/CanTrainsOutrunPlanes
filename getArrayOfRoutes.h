@@ -27,15 +27,19 @@ typedef struct{
     char typeOfTransport[];
 }route_t;
 
+char fileName[5][50] = {"FlightDistances.txt","IC CPH AAL.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt"};
+int routeLength[5] = {5, 13, 12, 9, 16};
+int totalRoutes = 5;
 
-void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* routeList) {
+
+void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* file) {
     for(int i = 0; i < numberOfRoutes; i++) {
 
-        fscanf(routeList, "%s", list[i].departureCity);
-        fscanf(routeList, " %s", list[i].arrivalCity);
-        fscanf(routeList, " %lf", &list[i].speed);
-        fscanf(routeList, " %lf", &list[i].time);
-        fscanf(routeList, " %lf", &list[i].distance);
+        fscanf(file, "%s", list[i].departureCity);
+        fscanf(file, " %s", list[i].arrivalCity);
+        fscanf(file, " %lf", &list[i].speed);
+        fscanf(file, " %lf", &list[i].time);
+        fscanf(file, " %lf", &list[i].distance);
 
         // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
         // Here you can assign the values to new variables
