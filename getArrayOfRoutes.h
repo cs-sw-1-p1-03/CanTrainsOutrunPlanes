@@ -43,12 +43,10 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
 }
 
 void routesFilesOpen(route_t routes[]){
-    // Important to change working directory every time you run program
-    routes[0].file = fopen("FlightDistances.txt", "r");   routes[0].length = 5;strcpy(routes[0].typeOfTransport,"Airplane");
-    routes[1].file = fopen("IC CPH SDG.txt", "r");        routes[1].length = 13;strcpy(routes[1].typeOfTransport,"InterCity");
-    routes[2].file = fopen("ICL CPH AAL.txt", "r");       routes[2].length = 12;strcpy(routes[2].typeOfTransport,"InterCityLyn");
-    routes[3].file = fopen("ICL CPH SDG.txt", "r");       routes[3].length = 9;strcpy(routes[3].typeOfTransport,"InterCityLyn");
-    routes[4].file = fopen("InterCity CPH AAL.txt", "r"); routes[4].length = 16;strcpy(routes[4].typeOfTransport,"InterCity");
+    for (int i = 0; i < totalRoutes;i++){
+        routes[i].file = fopen(fileName[i],"r");
+        routes[i].length = routeLength[i];
+    }
 }
 
 void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
@@ -62,16 +60,13 @@ void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
         readRouteFromFiles(listOfList[i].list, routes[i].length, routes[i].file);
         fclose(routes[i].file);
     }
+}
 
-    //prints for testing.
-/*
-            for(int i = 0; i < totalRoutes; i++)
-            {
-                for(int j = 0; j < routes[i].length;j++) {
-                    printf("Line = %d %s %s %.2lf %d %.2lf\n", j, listOfList[i].list[j].departureCity, listOfList[i].list[j].arrivalCity, listOfList[i].list[j].speed,
-                           listOfList[i].list[j].time, listOfList[i].list[j].distance);
-                }
-                printf("----------------\n");
-            }
-*/
- }
+void typeOfTransport(arrayOfRoutes_t arrayOfRoutes[], char *fileNameList) {
+    for (int i = 0; i < totalRoutes; ++i) {
+        strncpy(arrayOfRoutes[i].typeOfTransport, fileNameList[i], 3);
+
+        printf("%s \n", arrayOfRoutes[i].typeOfTransport);
+    }
+}
+

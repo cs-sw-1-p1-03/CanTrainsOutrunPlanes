@@ -5,8 +5,7 @@
 //  Our own libraries
 #include "interface.h"
 #include "getArrayOfRoutes.h"
-#include "readList.h"
-
+#include "searchRoutes.h"
 
 void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
 
