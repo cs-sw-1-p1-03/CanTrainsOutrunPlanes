@@ -4,7 +4,7 @@
 #include "string.h"
 //  Our own libraries
 #include "interface.h"
-#include "getListOfLists.h"
+#include "getArrayOfRoutes.h"
 #include "readList.h"
 
 
@@ -21,7 +21,7 @@ int main() {
 
     int totalRoutes = 5;
     //array for routes
-    list_t listOfList[totalRoutes];//Initializing a static array with the size of totalRoutes
+    list_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
 
@@ -51,4 +51,3 @@ int main() {
 }
 
 
-}
