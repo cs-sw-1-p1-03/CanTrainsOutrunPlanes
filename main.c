@@ -10,15 +10,14 @@
 #include "readList.h"
 
 
-void readList(char arrivalCity[], char departureCity[], list_t listOfList[], int totalRoutes);
+
 
 int main() {
     //Interface function
 
     char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
     char arrivalCity[20];   //                           --||--
-    interface(departureCity,
-              arrivalCity); // We have added the interface function to a h file, and then we can call interface
+    interface(departureCity, arrivalCity); // We have added the interface function to a h file, and then we can call interface
     // the same way we would call a strcmp or strlen
 
     int totalRoutes = 5;
@@ -28,7 +27,10 @@ int main() {
     //This list is empty
 
     route_t routes[totalRoutes]; //Creating an empty array of routes
-    routesFilesOpen(routes); //Filling it up
+
+    //routesFilesOpen(routes,listOfList); //Filling it up
+
+
 
     createListOfList(listOfList, totalRoutes); //Fulfilling the list with the void function
 

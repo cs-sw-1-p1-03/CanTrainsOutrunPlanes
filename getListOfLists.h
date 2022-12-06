@@ -72,7 +72,6 @@ void readFile(char fileName[], routeIntervals_t route[]) {
     // -------------- If file doesnt open, exits the program----------------
     FILE *file = fopen(fileName, "r");
 
-
         readRouteFromFiles(route, 16 ,file);
 
 }
