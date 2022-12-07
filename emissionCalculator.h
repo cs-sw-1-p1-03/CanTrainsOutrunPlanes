@@ -1,6 +1,5 @@
 #include "stdio.h"
 
-
 #define ICLem 56 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
 #define ICem 47 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
 #define Planeem 222 // An average of (grams/Co2/passenger/kilometer) taken from "SAS årsrapport"
@@ -9,7 +8,8 @@ void co2Multiplier(route_t routes[], list_t arrayOfRoutes[],int totalRoutes) {
 
     double emPlane, emIC, emICL;
 
-    for (int i = 0; i < totalRoutes; ++i) {
+    for (int i = 0; i < totalRoutes; ++i)
+    {
 
         if (arrayOfRoutes[i].found == 1)
         {
@@ -33,5 +33,4 @@ void co2Multiplier(route_t routes[], list_t arrayOfRoutes[],int totalRoutes) {
             }
         }
     }
-
 }

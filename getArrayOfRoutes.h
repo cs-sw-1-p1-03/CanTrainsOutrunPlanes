@@ -21,6 +21,7 @@ typedef struct{
     double totalDistance;
     double totalTravelCO2;
     double totalCO2;
+    double averageSpeed;
 }list_t;
 
 typedef struct{
