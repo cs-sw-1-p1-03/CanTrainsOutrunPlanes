@@ -29,7 +29,7 @@ void co2Multiplier(route_t routes[], list_t arrayOfRoutes[],int totalRoutes) {
             {
                 arrayOfRoutes[i].totalCO2 = (arrayOfRoutes[i].totalDistance * Planeem);
                 printf("FLIGHT -> ");
-                printf("TOTAL: %.2lf grams CO2 per passenger \n ", emPlane);
+                printf("TOTAL: %.2lf grams CO2 per passenger \n ", arrayOfRoutes[i].totalCO2);
             }
         }
     }

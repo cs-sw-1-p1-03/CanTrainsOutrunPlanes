@@ -16,8 +16,10 @@ typedef struct{
     routeIntervals_t list[100];
     int found;
     double totalTime;
+    double totalTimeBus;
+    double totalTimeWalk;
     double totalDistance;
-    double averageSpeed;
+    double totalTravelCO2;
     double totalCO2;
 }list_t;
 
@@ -44,7 +46,7 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
 
 void routesFilesOpen(route_t routes[]){
     // Important to change working directory every time you run program
-    routes[0].file = fopen("FlightDistances.txt", "r");   routes[0].length = 5; strcpy(routes[0].typeOfTransport,"Airplane");
+    routes[0].file = fopen("FlightDistances.txt", "r");   routes[0].length = 5; strcpy(routes[0].typeOfTransport,"airplane");
     routes[1].file = fopen("IC CPH SDG.txt", "r");        routes[1].length = 13;strcpy(routes[1].typeOfTransport,"IC");
     routes[2].file = fopen("ICL CPH AAL.txt", "r");       routes[2].length = 12;strcpy(routes[2].typeOfTransport,"ICL");
     routes[3].file = fopen("ICL CPH SDG.txt", "r");       routes[3].length = 9; strcpy(routes[3].typeOfTransport,"ICL");
