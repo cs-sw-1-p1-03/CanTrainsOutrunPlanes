@@ -13,7 +13,6 @@ void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],ch
     double walkResult, averageWalkSpeed = 5, busResult, averageBusSpeed = 30;
     double busCo2, busEmission = 11; //Assuming based on data that bus emission is 11 grams of CO2 per person km
 
-
     // set definitions
     walkResult = (distanceFromStation * 1 / averageWalkSpeed) * 60;
     busResult = (distanceFromStation * 1 / averageBusSpeed) * 60;

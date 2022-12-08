@@ -3,7 +3,9 @@
 // Function type is void since using a char does not allow for multiple returns
 void interface(char departureCity[], char arrivalCity[])
 {
-    printf("Hello User\n"
+
+    printf("                            Hello User\n"
+           "---------------------------------------------------------------------------------\n"
            "Choose your departure destination and your arrival destination\n"
            "You can choose between: \n"
            "CPHAirport Aalborg ... WRITE IN SPECIFICS \n"
