@@ -15,12 +15,12 @@ typedef struct {
 typedef struct{
     routeIntervals_t list[100];
     int found;
-    double totalTime;
-    double totalTimeBus;
+    double totalTime;   //RouteTime?
+    int totalTimeBus;
     double totalTimeWalk;
     double totalDistance;
     double totalTravelCO2;
-    double totalCO2;
+    double totalCO2; //change to routeCO2?
     double averageSpeed;
 }list_t;
 

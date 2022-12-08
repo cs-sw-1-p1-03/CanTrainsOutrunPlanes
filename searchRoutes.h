@@ -38,11 +38,7 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
 
             arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance / (arrayOfRoutes[i].totalTime / 60));
 
-            printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
-
-            printf("type: %s. totalTime =  %lf | totalDistance =  %lf | averageSpeed = %lf\n", routes[i].typeOfTransport,
-                   arrayOfRoutes[i].totalTime,
-                   arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
+            //printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
         }
 
 
@@ -89,11 +85,9 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
                 }
 
 
-                printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
+               // printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
 
-                printf("type: %s. totalTime =  %lf | totalDistance =  %lf | averageSpeed = %lf\n", routes[i].typeOfTransport,
-                       arrayOfRoutes[i].totalTime,
-                       arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
+
                 // Resetting so Indexes are no longer equal to j
             }
 
