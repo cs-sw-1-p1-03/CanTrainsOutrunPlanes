@@ -1,5 +1,6 @@
 void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes)
 {
+
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 

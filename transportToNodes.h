@@ -2,7 +2,6 @@
 
 void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]) {
     char luggage[10];
-    char transport[10]; //Initializing a new term for transport to determine whether it is a train or an airplane.
     int distanceFromStation, distanceFromAirport; //Initializing distance to calculate from the different nodes
     printf("Type your distance from the train station in km.\n");
     scanf("%d", &distanceFromStation);
