@@ -47,11 +47,17 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
 
 void routesFilesOpen(route_t routes[]){
     // Important to change working directory every time you run program
-    routes[0].file = fopen("FlightDistances.txt", "r");   routes[0].length = 5; strcpy(routes[0].typeOfTransport,"airplane");
-    routes[1].file = fopen("IC CPH SDG.txt", "r");        routes[1].length = 13;strcpy(routes[1].typeOfTransport,"IC");
-    routes[2].file = fopen("ICL CPH AAL.txt", "r");       routes[2].length = 12;strcpy(routes[2].typeOfTransport,"ICL");
-    routes[3].file = fopen("ICL CPH SDG.txt", "r");       routes[3].length = 9; strcpy(routes[3].typeOfTransport,"ICL");
-    routes[4].file = fopen("IC CPH AAL.txt", "r"); routes[4].length = 16;strcpy(routes[4].typeOfTransport,"IC");
+    // Add new files if you want them to run, automatic add file function might be written before exam
+    routes[0].file = fopen("FlightDistances.txt", "r");  routes[0].length = 5 ; strcpy(routes[0].typeOfTransport,"Airplane");
+    routes[1].file = fopen("IC CPH SDG.txt", "r");       routes[1].length = 13; strcpy(routes[1].typeOfTransport,"IC");
+    routes[2].file = fopen("ICL CPH AAL.txt", "r");      routes[2].length = 12; strcpy(routes[2].typeOfTransport,"ICL");
+    routes[3].file = fopen("ICL CPH SDG.txt", "r");      routes[3].length = 9 ; strcpy(routes[3].typeOfTransport,"ICL");
+    routes[4].file = fopen("IC CPH AAL.txt", "r");       routes[4].length = 16; strcpy(routes[4].typeOfTransport,"IC");
+    routes[5].file = fopen("IC CPH BLL.txt","r");        routes[5].length = 14; strcpy(routes[5].typeOfTransport,"IC");
+    routes[6].file = fopen("ICL CPH BLL.txt","r");       routes[6].length = 10; strcpy(routes[6].typeOfTransport,"ICL");
+    routes[7].file = fopen("ICL CPH KRP.txt","r");       routes[7].length = 13; strcpy(routes[7].typeOfTransport,"ICL");
+    routes[8].file = fopen("IC CPH KRP.txt","r");        routes[8].length = 17; strcpy(routes[8].typeOfTransport,"IC");
+
 }
 
 void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
