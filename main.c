@@ -45,3 +45,14 @@ int main() {
 
 
 }
+
+/* char timeConverter[](int aMinutes)
+ * {
+ * int minutes, hours;
+ *
+ * minutes = aMinutes % 60;
+ * hours = (aMinutes - minutes) / 60;
+ *
+ *
+ * return strcat((strcat(itoa(hours), " hours and"), (strcat(itoa(minutes), " minutes"));
+ */
