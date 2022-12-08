@@ -21,7 +21,7 @@ int main() {
               arrivalCity); // We have added the interface function to a h file, and then we can call interface
     // the same way we would call a strcmp or strlen
 
-    int totalRoutes = 5;
+    int totalRoutes = 9;
     //array for routes
     list_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
