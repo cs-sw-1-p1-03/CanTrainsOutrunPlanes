@@ -8,10 +8,7 @@
 #include "searchRoutes.h"
 #include "emissionCalculator.h"
 #include "transportToNodes.h"
-
-#define ICLem 56 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
-#define ICem 47 // (grams of Co2/passenger/kilometer) taken from "DSB årsrapport"
-#define Planeem 111 // An average of (grams/Co2/passenger/kilometer) taken from "SAS årsrapport"
+#include "advancedDetails.h"
 
 
 void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
@@ -41,8 +38,9 @@ int main() {
 
     //calculate();
 
-    transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity);
+    transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
 
+    advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
 
 }
 
