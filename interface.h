@@ -5,7 +5,7 @@ void interFace1() {
 
     printf("                            Hello User\n"
            "---------------------------------------------------------------------------------\n"
-           "         Choose your departure destination and your arrival destination\n"
+           "In this program you enter your departure destination and your arrival destination.\n"
     );
 }
 
