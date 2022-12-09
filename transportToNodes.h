@@ -26,14 +26,27 @@ void stringCheck(char scanText[]){
 void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]) {
     char luggage[10];
     int distanceFromStation, distanceFromAirport; //Initializing distance to calculate from the different nodes
-    printf("Type your distance from the train station in km.\n");
-    scanf("%d", &distanceFromStation);
-    printf("Type your distance to the airport in km.\n");
-    scanf("%d", &distanceFromAirport);
-    printf("Are you taking luggage (yes/no)?\n");
-    scanf("%s", luggage);
-    double walkResult, averageWalkSpeed = 5, busResult, averageBusSpeed = 30;
-    double busCo2, busEmission = 11; //Assuming based on data that bus emission is 11 grams of CO2 per person km
+
+    // ------------------------ failsafe
+    char input[5];
+    do {
+        printf("\nType your distance to the train station in km.\n");
+        scanf("%5s", input);
+    }
+    while(!digitCheck(input));
+    distanceFromStation = atoi(input);
+
+    do {
+        printf("\nType your distance to the airport in km.\n");
+        scanf("%5s", input);
+    }
+    while (!digitCheck(input));
+    distanceFromAirport = atoi(input);
+
+        printf("Are you taking luggage (yes/no)?\n");
+        scanf("%s", luggage);
+        double walkResult, averageWalkSpeed = 5, busResult, averageBusSpeed = 30;
+        double busCo2, busEmission = 11; //Assuming based on data that bus emission is 11 grams of CO2 per person km
 
         // set definitions
         walkResult = (distanceFromStation * 1 / averageWalkSpeed) * 60;
