@@ -69,18 +69,17 @@ void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
     //Each list is read with their own route from 0-4
     for (int  i = 0;  i < totalRoutes; i++) {
         readRouteFromFiles(listOfList[i].list, routes[i].length, routes[i].file);
+
         fclose(routes[i].file);
     }
 
-    //prints for testing.
-/*
-            for(int i = 0; i < totalRoutes; i++)
-            {
-                for(int j = 0; j < routes[i].length;j++) {
-                    printf("Line = %d %s %s %.2lf %d %.2lf\n", j, listOfList[i].list[j].departureCity, listOfList[i].list[j].arrivalCity, listOfList[i].list[j].speed,
-                           listOfList[i].list[j].time, listOfList[i].list[j].distance);
-                }
-                printf("----------------\n");
-            }
-*/
  }
+
+void closeRoutes(route_t routes[],int totalRoutes){
+
+ for (int i = 0; i < totalRoutes; i ++){
+ fclose(routes[i].file);
+    }
+ }
+
+

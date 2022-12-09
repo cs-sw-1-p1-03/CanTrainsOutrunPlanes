@@ -27,7 +27,7 @@ int main() {
 
     createArrayOfRoutes(arrayOfRoutes, totalRoutes); //Fulfilling the list with the void function
 
-    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
+
 
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
@@ -94,5 +94,5 @@ int main() {
     transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
 
     advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
-
+    closeRoutes(routes,totalRoutes);
 }
