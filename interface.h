@@ -9,12 +9,20 @@ void interface1() {
     );
 }
 
-void interface2(char departureCity[], char arrivalCity[]){
-    printf("Once you have selected your destination the program will return the following: \n"
-    "Travel time, CO2 Emission and a comparison between airplanes and trains.\n"
-    "---------------------------------------------------------------------------------\n\n"
-    "Please insert your desired departure and arrival destinations.\n");
+void interFace2()
+{
+    printf("\nOnce you have selected your destination the program will return the following: \n"
+           "Travel time, CO2 Emission and a comparison between airplanes and trains.\n"
+           "---------------------------------------------------------------------------------\n\n");
+}
 
-    scanf("%s %s", departureCity, arrivalCity);
+/**
+ * Function that scans the departure city
+ * @param departureCity this is where we save the variable
+ */
+void scanDepartureCity(char departureCity[])
+{
+    printf("Please enter your desired departure destination.\n");
+    scanf("%s", departureCity);
 
 }

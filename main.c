@@ -59,8 +59,14 @@ int main() {
            }
         }
     }
+    for (int k = 0; k < 50; k++) {
+        if (strcmp(cityChoices[k], "") == 0) {
+            strcpy(cityChoices[k], "CPHAirport");
+            break;
+        }
+    }
 
-    closeRoutes(routes,totalRoutes);
+    closeRoutes(routes, totalRoutes);
 
     printf("You can choose between:\n");
 
@@ -93,6 +99,7 @@ int main() {
 
     transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
 
-    advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
-    closeRoutes(routes,totalRoutes);
-}
+        advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//In this section we explain in more details how the calculations went through it.
+
+        closeRoutes(routes, totalRoutes);//Closing the routes
+    }
