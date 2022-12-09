@@ -35,7 +35,7 @@ void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],ch
     }
     while(!digitCheck(input));
     distanceFromStation = atoi(input);
-
+//Failsafe
     do {
         printf("\nType your distance to the airport in km.\n");
         scanf("%5s", input);
