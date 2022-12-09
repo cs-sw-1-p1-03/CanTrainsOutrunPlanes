@@ -6,10 +6,8 @@
 
 void co2Multiplier(route_t routes[], list_t arrayOfRoutes[],int totalRoutes) {
 
-
     for (int i = 0; i < totalRoutes; ++i)
     {
-
         if (arrayOfRoutes[i].found == 1)
         {
             if (strcmp(routes[i].typeOfTransport, "IC") == 0)

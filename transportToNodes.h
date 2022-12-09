@@ -1,4 +1,27 @@
 #include "stdio.h"
+#include "ctype.h"
+#include "stdbool.h"
+
+bool digitCheck(char key[])
+{
+    for(int i = 0; i < strlen(key); i++)
+    {
+        if(isdigit(key[i])==0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+void stringCheck(char scanText[]){
+    char temp[20];
+    do{
+        scanf("%s",temp);
+    }while(strcmp(temp,scanText)!=0);
+    strcpy(scanText,temp);
+}
 
 void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]) {
     char luggage[10];
