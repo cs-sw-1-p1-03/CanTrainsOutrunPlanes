@@ -10,16 +10,14 @@
 #include "transportToNodes.h"
 #include "advancedDetails.h"
 
-
 void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
 
 int main() {
     //Interface function
     char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
     char arrivalCity[20];   //                           --||--
-
-
     int totalRoutes = 9;
+
     //array for routes
     list_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
@@ -27,36 +25,29 @@ int main() {
 
     createArrayOfRoutes(arrayOfRoutes, totalRoutes); //Fulfilling the list with the void function
 
-
-
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
     interFace1();//Printing the first interfae that the user will recieve
 
     char cityChoices[50][100];
-    for(int k = 0; k < 50; k ++) {
-        strcpy(cityChoices[k],"");
+    for (int k = 0; k < 50; k++) {
+        strcpy(cityChoices[k], "");
     }
-
 
     for (int i = 0; i < totalRoutes; i++) {
         for (int j = 0; j < routes[i].length; j++) {
             int foundInList = 0;
-           for(int k = 0; k < 50; k ++){
+            for (int k = 0; k < 50; k++) {
 
-
-
-               if (strcmp(arrayOfRoutes[i].list[j].arrivalCity, cityChoices[k]) == 0 ){
-                   foundInList = 1;
-               }
-
-
-                if (foundInList == 0 && strcmp(cityChoices[k],"")==0) {
+                if (strcmp(arrayOfRoutes[i].list[j].arrivalCity, cityChoices[k]) == 0) {
+                    foundInList = 1;
+                }
+                if (foundInList == 0 && strcmp(cityChoices[k], "") == 0) {
                     strcpy(cityChoices[k], arrayOfRoutes[i].list[j].arrivalCity);
                     break;
                 }
-           }
+            }
         }
     }
     for (int k = 0; k < 50; k++) {
@@ -71,13 +62,13 @@ int main() {
     printf("You can choose between:\n");
 
     int table = 0;
-    for(int k = 0; k < 50; k ++){
-        if(strcmp(cityChoices[k],"")!=0) {
+    for (int k = 0; k < 50; k++) {
+        if (strcmp(cityChoices[k], "") != 0) {
             printf(" %-13s \t", cityChoices[k]);
             table++;
-           // int length = sizeof(cityChoices[k]);
-           //if(length >= 4)
-            if(table >= 3) {
+            // int length = sizeof(cityChoices[k]);
+            //if(length >= 4)
+            if (table >= 3) {
                 printf("\n");
                 table = 0;
             }
@@ -173,11 +164,9 @@ int main() {
         routesFilesOpen(routes); //Filling it up
         searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
 
-    co2Multiplier(routes, arrayOfRoutes, totalRoutes);
+        co2Multiplier(routes, arrayOfRoutes, totalRoutes);//Finding the CO2 emission for different types of transportation
 
-    //calculate();
-
-    transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
+        transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//Calculating whether the user will be directly at the station/airport or if they are using a bus
 
         advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//In this section we explain in more details how the calculations went through it.
 

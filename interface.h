@@ -26,3 +26,13 @@ void scanDepartureCity(char departureCity[])
     scanf("%s", departureCity);
 
 }
+
+/**
+ * Function that scans the arrival city
+ * @param departureCity this is where we save the variable
+ */
+void scanArrivalCity(char arrivalCity[])
+{
+    printf("Please enter your desired arrival destination.\n");
+    scanf("%s", arrivalCity);
+}

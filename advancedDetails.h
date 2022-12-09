@@ -1,7 +1,7 @@
 void advancedDetails(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]){
 
     int detail;
-    printf("\n\nPress 1 for advanced details");
+    printf("\n\nPress 1 for advanced details or press 2 to exit");
     scanf("%d",&detail);
 
     if(detail == 1)
@@ -48,9 +48,8 @@ void advancedDetails(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],cha
                 }
             }
         }
-
-
-    }else{
+    }
+    else{
         EXIT_SUCCESS;
     }
 }
