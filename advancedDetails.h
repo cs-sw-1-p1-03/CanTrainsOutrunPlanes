@@ -8,7 +8,7 @@ void advancedDetails(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],cha
     {
         printf("\n\n                             Advanced details:\n"
                "-------------------------------------------------------------------------------------------------------\n"
-               "Travel time for airplanes in Denmark is generally 40 minutes to an hour. \n"
+               "Travel time for airplanes in Denmark is generally 40 minutes to an hour.test failsafes \n"
                "This program takes into consideration that it is recommended to arrive 1 hour and 30 minutes \n"
                "before boarding domestic flights and an estimate of 30 minutes to board. \n"
                "Most airports are placed outside the city which means extra transport. \n"
