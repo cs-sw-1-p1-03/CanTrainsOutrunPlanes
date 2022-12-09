@@ -57,7 +57,6 @@ void routesFilesOpen(route_t routes[]){
     routes[6].file = fopen("ICL CPH BLL.txt","r");       routes[6].length = 10; strcpy(routes[6].typeOfTransport,"ICL");
     routes[7].file = fopen("ICL CPH KRP.txt","r");       routes[7].length = 13; strcpy(routes[7].typeOfTransport,"ICL");
     routes[8].file = fopen("IC CPH KRP.txt","r");        routes[8].length = 17; strcpy(routes[8].typeOfTransport,"IC");
-
 }
 
 void createArrayOfRoutes(list_t listOfList[], int totalRoutes){
