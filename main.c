@@ -32,7 +32,7 @@ int main() {
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
-    interface1();
+    interFace1();//Printing the first interfae that the user will recieve
 
     char cityChoices[50][100];
     for(int k = 0; k < 50; k ++) {
