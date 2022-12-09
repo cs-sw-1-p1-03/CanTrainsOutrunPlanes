@@ -15,12 +15,12 @@ bool digitCheck(char key[])
 }
 
 
-void stringCheck(char scanText[]){
+int stringCheck(char scanText[]){
     char temp[20];
     do{
         scanf("%s",temp);
     }while(strcmp(temp,scanText)!=0);
-    strcpy(scanText,temp);
+    return 1;
 }
 
 void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]) {
@@ -35,7 +35,7 @@ void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],ch
     }
     while(!digitCheck(input));
     distanceFromStation = atoi(input);
-//Failsafe
+    //Failsafe
     do {
         printf("\nType your distance to the airport in km.\n");
         scanf("%5s", input);
@@ -43,8 +43,16 @@ void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],ch
     while (!digitCheck(input));
     distanceFromAirport = atoi(input);
 
+    while (1) {
         printf("Are you taking luggage (yes/no)?\n");
         scanf("%s", luggage);
+        if(strcmp(luggage,"no") == 0 || strcmp(luggage,"yes") == 0)
+        {
+            break;
+        }
+    }
+
+
         double walkResult, averageWalkSpeed = 5, busResult, averageBusSpeed = 30;
         double busCo2, busEmission = 11; //Assuming based on data that bus emission is 11 grams of CO2 per person km
 

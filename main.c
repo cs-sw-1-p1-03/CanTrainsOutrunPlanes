@@ -85,13 +85,93 @@ int main() {
     }
     printf("\n");
 
+    interFace2();//Printing the second interface that the user will receive about the details they will get
 
-    interface2(departureCity,
-              arrivalCity); // We have added the interface function to a h file, and then we can call interface
-    // the same way we would call a strcmp or strlen
+    int flip = 0;
+    while (1) {
+        scanDepartureCity(departureCity);
 
-    routesFilesOpen(routes); //Filling it up
-    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
+        for (int i = 0; i < 50; i++) {
+            if (strcmp(departureCity, cityChoices[i]) == 0) {
+                flip = 1;
+                break;
+            }
+        }
+        if (flip == 1) {
+            break;
+        }
+    }
+
+        char citiesToChoose[20][20];
+        for (int k = 0; k < 20; k++) {
+            strcpy(citiesToChoose[k], "");
+        }
+
+        for (int i = 0; i < totalRoutes; i++) {
+            int foundInList = 0;
+            for (int j = 0; j < routes[i].length; j++) {
+
+                int alreadyInList = 0;
+
+                for (int k = 0; k < 50; k++) {
+                    if (strcmp(departureCity, cityChoices[k]) == 0) {
+                        foundInList = 1;
+                    }
+                }
+                for (int k = 0; k < 20; k++) {
+                    if (strcmp(arrayOfRoutes[i].list[j].arrivalCity, citiesToChoose[k]) == 0) {
+                        alreadyInList = 1;
+                    }
+
+                    if (alreadyInList == 0 && strcmp(citiesToChoose[k], "") == 0 && foundInList == 1) {
+                        strcpy(citiesToChoose[k], arrayOfRoutes[i].list[j].arrivalCity);
+                        break;
+                    }
+                }
+            }
+        }
+
+        table = 0;
+        for (int k = 0; k < 20; k++) {
+            if (strcmp(citiesToChoose[k], "") != 0) {
+                printf(" %-13s \t", citiesToChoose[k]);
+                table++;
+                // int length = sizeof(cityChoices[k]);
+                //if(length >= 4)
+                if (table >= 3) {
+                    printf("\n");
+                    table = 0;
+                }
+            }
+        }
+    for (int k = 0; k < routes[0].length; k++) {
+    if (strcmp(departureCity,arrayOfRoutes[0].list[k].arrivalCity) == 0 && strcmp(cityChoices[k],"") == 0){
+            strcpy(cityChoices[k], "CPHAirport");
+            break;
+        }
+    }
+
+
+
+        printf("\n");
+
+        flip = 0;
+        while (1) {
+            scanArrivalCity(arrivalCity);
+
+            for (int i = 0; i < 20; i++) {
+                if (strcmp(arrivalCity, citiesToChoose[i]) == 0) {
+                    flip = 1;
+                    break;
+                }
+            }
+            if (flip == 1) {
+                break;
+            }
+        }
+
+        routesFilesOpen(routes); //Filling it up
+        searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
 
     co2Multiplier(routes, arrayOfRoutes, totalRoutes);
 

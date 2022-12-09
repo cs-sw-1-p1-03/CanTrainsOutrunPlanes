@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Function type is void since using a char does not allow for multiple returns
-void interface1() {
+void interFace1() {
 
     printf("                            Hello User\n"
            "---------------------------------------------------------------------------------\n"
