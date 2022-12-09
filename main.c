@@ -17,9 +17,7 @@ int main() {
     //Interface function
     char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
     char arrivalCity[20];   //                           --||--
-    interface(departureCity,
-              arrivalCity); // We have added the interface function to a h file, and then we can call interface
-    // the same way we would call a strcmp or strlen
+
 
     int totalRoutes = 9;
     //array for routes
@@ -34,6 +32,61 @@ int main() {
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
 
+    interface1();
+
+    char cityChoices[50][100];
+    for(int k = 0; k < 50; k ++) {
+        strcpy(cityChoices[k],"");
+    }
+
+
+    for (int i = 0; i < totalRoutes; i++) {
+        for (int j = 0; j < routes[i].length; j++) {
+            int foundInList = 0;
+           for(int k = 0; k < 50; k ++){
+
+
+
+               if (strcmp(arrayOfRoutes[i].list[j].arrivalCity, cityChoices[k]) == 0 ){
+                   foundInList = 1;
+               }
+
+
+                if (foundInList == 0 && strcmp(cityChoices[k],"")==0) {
+                    strcpy(cityChoices[k], arrayOfRoutes[i].list[j].arrivalCity);
+                    break;
+                }
+           }
+        }
+    }
+
+    closeRoutes(routes,totalRoutes);
+
+    printf("You can choose between:\n");
+
+    int table = 0;
+    for(int k = 0; k < 50; k ++){
+        if(strcmp(cityChoices[k],"")!=0) {
+            printf(" %-13s \t", cityChoices[k]);
+            table++;
+           // int length = sizeof(cityChoices[k]);
+           //if(length >= 4)
+            if(table >= 3) {
+                printf("\n");
+                table = 0;
+            }
+        }
+    }
+    printf("\n");
+
+
+    interface2(departureCity,
+              arrivalCity); // We have added the interface function to a h file, and then we can call interface
+    // the same way we would call a strcmp or strlen
+
+    routesFilesOpen(routes); //Filling it up
+    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, totalRoutes); //Reading the list
+
     co2Multiplier(routes, arrayOfRoutes, totalRoutes);
 
     //calculate();
@@ -43,14 +96,3 @@ int main() {
     advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);
 
 }
-
-/* char timeConverter[](int aMinutes)
- * {
- * int minutes, hours;
- *
- * minutes = aMinutes % 60;
- * hours = (aMinutes - minutes) / 60;
- *
- *
- * return strcat((strcat(itoa(hours), " hours and"), (strcat(itoa(minutes), " minutes"));
- */
