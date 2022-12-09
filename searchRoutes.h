@@ -95,4 +95,5 @@ void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes
             departureIndex = -1;
             arrivalIndex = -1;
         }
+
     }

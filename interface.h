@@ -15,4 +15,5 @@ void interface(char departureCity[], char arrivalCity[])
            "Please insert your desired departure and arrival destinations.\n");
 
     scanf("%s %s", departureCity, arrivalCity);
+
 }
