@@ -168,7 +168,7 @@ int main() {
 
         transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//Calculating whether the user will be directly at the station/airport or if they are using a bus
 
-        advancedDetails(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//In this section we explain in more details how the calculations went through it.
+        advancedDetails(arrayOfRoutes, totalRoutes, routes /*, arrivalCity, departureCity*/);//In this section we explain in more details how the calculations went through it.
 
         closeRoutes(routes, totalRoutes);//Closing the routes
     }

@@ -1,7 +1,11 @@
 #include "stdio.h"
 #include "ctype.h"
 #include "stdbool.h"
-
+/**
+ * Function to check if a string is made of numbers only.
+ * @param key Takes in the string this is to be checked.
+ * @return returns either the boolean true or false value, based on whether the string is a number or not.
+ */
 bool digitCheck(char key[])
 {
     for(int i = 0; i < strlen(key); i++)
@@ -14,7 +18,6 @@ bool digitCheck(char key[])
     return true;
 }
 
-
 int stringCheck(char scanText[]){
     char temp[20];
     do{
@@ -22,8 +25,15 @@ int stringCheck(char scanText[]){
     }while(strcmp(temp,scanText)!=0);
     return 1;
 }
-
-void transportToNodes(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]) {
+/**
+ * Contains most logic of the program, including calls to other functions.
+ * @param arrayOfRoutes Takes in the array of routes used throughout the program.
+ * @param totalRoutes Takes in the total amount of routes available.
+ * @param routes Takes in the the array of routes.
+ * @param arrivalCity Takes in an arrival city.
+ * @param departureCity Takes in an departure city.
+ */
+void transportToNodes(list_t arrayOfRoutes[], int totalRoutes, route_t routes[], char arrivalCity[], char departureCity[]) {
     char luggage[10];
     int distanceFromStation, distanceFromAirport; //Initializing distance to calculate from the different nodes
 

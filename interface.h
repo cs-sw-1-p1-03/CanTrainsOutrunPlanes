@@ -1,6 +1,8 @@
 #include <stdio.h>
 
-// Function type is void since using a char does not allow for multiple returns
+/**
+ * Simple function to print a welcome message to the user
+ */
 void interFace1() {
 
     printf("                            Hello User\n"
@@ -8,7 +10,9 @@ void interFace1() {
            "In this program you enter your departure destination and your arrival destination.\n"
     );
 }
-
+/**
+ * Simple function to print the info about the functionality of the program.
+ */
 void interFace2()
 {
     printf("\nOnce you have selected your destination the program will return the following: \n"

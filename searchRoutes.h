@@ -1,3 +1,10 @@
+/**
+ * Searches the array of routes for the given arrival- and departure city (Both ways).
+ * @param arrivalCity The city from where the route starts.
+ * @param departureCity The city where the route will end.
+ * @param arrayOfRoutes The array that contains all routes.
+ * @param totalRoutes The total amount of routes available.
+ */
 void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes)
 {
 

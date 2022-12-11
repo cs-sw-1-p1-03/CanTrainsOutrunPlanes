@@ -1,4 +1,10 @@
-void advancedDetails(list_t arrayOfRoutes[],int totalRoutes,route_t routes[],char arrivalCity[], char departureCity[]){
+/**
+ * UI function that prints further details to a given route.
+ * @param arrayOfRoutes takes in the entire array of destinations.
+ * @param totalRoutes takes in the number of available routes.
+ * @param routes takes in the list/array of available routes
+ */
+void advancedDetails(list_t arrayOfRoutes[], int totalRoutes, route_t routes[] /*, char arrivalCity[], char departureCity[]*/){
 
     int detail;
     printf("\n\nPress 1 for advanced details or press 2 to exit");
