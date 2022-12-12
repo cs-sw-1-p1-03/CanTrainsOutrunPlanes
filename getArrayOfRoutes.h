@@ -75,11 +75,7 @@ void routesFilesOpen(route_t routes[]){
  * @param arrayOfRoutes The array of list that will populated.
  * @param totalRoutes The total amount of routes available.
  */
-void createArrayOfRoutes(list_t arrayOfRoutes[], int totalRoutes){
-
-    //totalRoutes = 5. our 5 lists of routes
-    route_t routes[totalRoutes]; //Creating an empty array of routes
-    routesFilesOpen(routes); //opens the 5 files and their length in spots of 0 to totalRoutes-1.
+void createArrayOfRoutes(list_t arrayOfRoutes[], int totalRoutes,route_t routes[]){
 
     //Each list is read with their own route
     for (int  i = 0;  i < totalRoutes; i++) {

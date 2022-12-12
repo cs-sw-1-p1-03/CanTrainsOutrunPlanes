@@ -23,10 +23,11 @@ int main() {
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
 
-    createArrayOfRoutes(arrayOfRoutes, totalRoutes); //Fulfilling the list with the void function
-
     route_t routes[totalRoutes]; //Creating an empty array of routes
     routesFilesOpen(routes); //Filling it up
+    createArrayOfRoutes(arrayOfRoutes, totalRoutes,routes); //Fulfilling the list with the void function
+
+
 
     interFace1();//Printing the first interfae that the user will recieve
 
