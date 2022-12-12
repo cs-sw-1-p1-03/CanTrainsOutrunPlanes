@@ -5,7 +5,7 @@ typedef struct {
     char string[30];
 }arrayOfStrings_t;
 
-void destinationChoices(route_t routes[], list_t arrayOfRoutes[], int totalRoutes,arrayOfStrings_t cityChoices[]){
+void destinationChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,arrayOfStrings_t cityChoices[]){
 
     for (int k = 0; k < 50; k++) {
         strcpy(cityChoices[k].string, "");
@@ -34,7 +34,7 @@ void destinationChoices(route_t routes[], list_t arrayOfRoutes[], int totalRoute
     }
 }
 
-void arrivalChoices(route_t routes[], list_t arrayOfRoutes[], int totalRoutes,char departureCity[], arrayOfStrings_t cityChoices[],arrayOfStrings_t arrivalChoice[]){
+void arrivalChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,char departureCity[], arrayOfStrings_t cityChoices[],arrayOfStrings_t arrivalChoice[]){
     for (int k = 0; k < 50; k++) {
         strcpy(arrivalChoice[k].string, "");
     }

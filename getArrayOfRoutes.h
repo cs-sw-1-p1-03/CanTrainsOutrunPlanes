@@ -25,7 +25,7 @@ typedef struct{
     double totalTravelCO2;
     double totalCO2; //change to routeCO2?
     double averageSpeed;
-}list_t; //!!!This name has to be changed, Brian will notice.
+}route_t; //!!!This name has to be changed, Brian will notice.
 
 //This struct is used to streamline the reading of route files, and the population of the final array of routes.
 typedef struct{
@@ -33,7 +33,7 @@ typedef struct{
     char fileName[30];
     int length;
     char typeOfTransport[100];
-}route_t;
+}routeFile_t;
 
 /**
  * Function that is called to populate an entry of a routeInterval
@@ -58,7 +58,7 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
  * Opens all files into an array
  * @param routes The list that will be populated with the opened files.
  */
-void defineFiles2(route_t routes[],int totalRoutes){
+void defineFiles2(routeFile_t routes[],int totalRoutes){
 
     char* fileNames[10] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt","IC CPH AAL.txt","IC CPH BLL.txt","ICL CPH BLL.txt","ICL CPH KRP.txt","IC CPH KRP.txt"};
     int fileLengths[10] = {5,13,12,9,16,14,10,13,17};
@@ -69,50 +69,14 @@ void defineFiles2(route_t routes[],int totalRoutes){
     }
 }
 
-void defineFiles(route_t routes[]){
-    // Important to change working directory every time you run program
-    // Add new files if you want them to run, automatic add file function might be written before exam
-    strcpy(routes[0].fileName, "FlightDistances.txt");  routes[0].length = 5 ; strcpy(routes[0].typeOfTransport,"Airplane");
-    strcpy(routes[1].fileName,"IC CPH SDG.txt");       routes[1].length = 13; strcpy(routes[1].typeOfTransport,"IC");
-    strcpy(routes[2].fileName,"ICL CPH AAL.txt");      routes[2].length = 12; strcpy(routes[2].typeOfTransport,"ICL");
-    strcpy(routes[3].fileName,"ICL CPH SDG.txt");      routes[3].length = 9 ; strcpy(routes[3].typeOfTransport,"ICL");
-    strcpy(routes[4].fileName,"IC CPH AAL.txt");       routes[4].length = 16; strcpy(routes[4].typeOfTransport,"IC");
-    strcpy(routes[5].fileName,"IC CPH BLL.txt");        routes[5].length = 14; strcpy(routes[5].typeOfTransport,"IC");
-    strcpy(routes[6].fileName,"ICL CPH BLL.txt");       routes[6].length = 10; strcpy(routes[6].typeOfTransport,"ICL");
-    strcpy(routes[7].fileName,"ICL CPH KRP.txt");       routes[7].length = 13; strcpy(routes[7].typeOfTransport,"ICL");
-    strcpy(routes[8].fileName,"IC CPH KRP.txt");        routes[8].length = 17; strcpy(routes[8].typeOfTransport,"IC");
+ void openFile(routeFile_t route){
+    route.file = fopen(route.fileName,"r");
 }
 
-void openFiles(route_t routes[], int totalRoutes){
-    for(int i = 0; i < totalRoutes;i++)
-        routes[i].file = fopen(routes[i].fileName,"r");
+void createArrayOfRoute(route_t arrayOfRoute,routeFile_t route){
+    readRouteFromFiles(arrayOfRoute.list,route.length,route.file);
 }
 
-
-/**
- * Creates an array of routes, that will be used in the rest of the program.
- * @param arrayOfRoutes The array of list that will populated.
- * @param totalRoutes The total amount of routes available.
- * @param routes Our open routes. -- more specifit comments is needed
- */
-void createArrayOfRoutes(list_t arrayOfRoutes[], int totalRoutes,route_t routes[]){
-
-    //Each list is read with their own route
-    for (int  i = 0;  i < totalRoutes; i++) {
-        readRouteFromFiles(arrayOfRoutes[i].list, routes[i].length, routes[i].file);
-    }
-
- }
-/**
- * Simple function to close all opened routeFiles
- * @param routes Takes in the array of routes
- * @param totalRoutes Takes in the number of routes
- */
-void closeRoutes(route_t routes[], int totalRoutes){
-
- for (int i = 0; i < totalRoutes; i ++){
- fclose(routes[i].file);
-    }
- }
-
-
+void closeFile(routeFile_t route){
+    fclose(route.file);
+}

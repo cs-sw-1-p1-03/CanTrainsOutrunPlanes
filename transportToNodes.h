@@ -33,7 +33,7 @@ int stringCheck(char scanText[]){
  * @param arrivalCity Takes in an arrival city.
  * @param departureCity Takes in an departure city.
  */
-void transportToNodes(list_t arrayOfRoutes[], int totalRoutes, route_t routes[], char arrivalCity[], char departureCity[]) {
+void transportToNodes(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[], char arrivalCity[], char departureCity[]) {
     char luggage[10];
     int distanceFromStation, distanceFromAirport; //Initializing distance to calculate from the different nodes
 
@@ -42,15 +42,16 @@ void transportToNodes(list_t arrayOfRoutes[], int totalRoutes, route_t routes[],
     do {
         printf("\nType your distance to the train station in km.\n");
         scanf("%5s", input);
-    }
-    while(!digitCheck(input));
+    } while(!digitCheck(input));
+
     distanceFromStation = atoi(input);
+
     //Failsafe
     do {
         printf("\nType your distance to the airport in km.\n");
         scanf("%5s", input);
-    }
-    while (!digitCheck(input));
+    } while (!digitCheck(input));
+
     distanceFromAirport = atoi(input);
 
     while (1) {
@@ -210,5 +211,4 @@ void transportToNodes(list_t arrayOfRoutes[], int totalRoutes, route_t routes[],
                 }
             }
         }
-
     }

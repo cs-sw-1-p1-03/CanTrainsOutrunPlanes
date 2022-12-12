@@ -9,7 +9,7 @@
  * @param arrayOfRoutes Takes in a pointer to the array of stops.
  * @param totalRoutes Takes in the total number of Routes.
  */
-void co2Multiplier(route_t routes[], list_t arrayOfRoutes[], int totalRoutes) {
+void co2Multiplier(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes) {
 
     for (int i = 0; i < totalRoutes; ++i)
     {

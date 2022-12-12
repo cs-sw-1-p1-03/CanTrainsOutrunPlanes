@@ -21,16 +21,18 @@ int main() {
     int totalRoutes = 9;
 
     //array for routes
-    list_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
+    route_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
     //The list is defined as an array of arrays(routeIntervals_t)
     //This list is empty
 
-    route_t routes[totalRoutes]; //Creating an empty array of routes
+    routeFile_t routes[totalRoutes]; //Creating an empty array of routes
     defineFiles2(routes,totalRoutes); //Filling it up
 
-    openFiles(routes,totalRoutes);
-    createArrayOfRoutes(arrayOfRoutes, totalRoutes,routes); //Fulfilling the list with the void function
-    closeRoutes(routes,totalRoutes);
+    for (int i = 0; i < totalRoutes;i++) {
+        openFile(routes[i]);
+        createArrayOfRoute(arrayOfRoutes[i],routes[i]); //Fulfilling the list with the void function
+        closeFile(routes[i]);
+    }
 
 
     interFace1();//Printing the first interfae that the user will recieve
