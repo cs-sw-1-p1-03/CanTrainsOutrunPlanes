@@ -26,11 +26,11 @@ int main() {
     //This list is empty
 
     route_t routes[totalRoutes]; //Creating an empty array of routes
-    defineFiles2(routes,totalRoutes); //Filling it up
+    routesFilesOpen(routes); //Filling it up
 
-    openFiles(routes,totalRoutes);
+
     createArrayOfRoutes(arrayOfRoutes, totalRoutes,routes); //Fulfilling the list with the void function
-    closeRoutes(routes,totalRoutes);
+
 
 
     interFace1();//Printing the first interfae that the user will recieve
@@ -61,6 +61,7 @@ int main() {
 
     advancedDetails(arrayOfRoutes, totalRoutes, routes /*, arrivalCity, departureCity*/);//In this section we explain in more details how the calculations went through it.
 
+    closeRoutes(routes,totalRoutes);
 
         return 0;
     }
