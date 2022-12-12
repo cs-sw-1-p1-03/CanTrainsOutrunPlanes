@@ -69,7 +69,18 @@ void defineFiles2(routeFile_t routes[],int totalRoutes){
     }
 }
 
- void openFile(routeFile_t route){
+void createArrayOfRoutes(route_t arrayOfRoutes[], int totalRoutes,routeFile_t routes[]){
+
+    for (int  i = 0;  i < totalRoutes; i++) {
+        routes[i].file = fopen(routes[i].fileName,"r");
+        readRouteFromFiles(arrayOfRoutes[i].list, routes[i].length, routes[i].file);
+        fclose(routes[i].file);
+    }
+}
+
+//alternativ for Brian's wishes. Does not work. Dont know why...
+/*
+void openFile(routeFile_t route){
     route.file = fopen(route.fileName,"r");
 }
 
@@ -80,3 +91,4 @@ void createArrayOfRoute(route_t arrayOfRoute,routeFile_t route){
 void closeFile(routeFile_t route){
     fclose(route.file);
 }
+*/

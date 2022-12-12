@@ -28,11 +28,14 @@ int main() {
     routeFile_t routes[totalRoutes]; //Creating an empty array of routes
     defineFiles2(routes,totalRoutes); //Filling it up
 
+    /* What Brian Wants
     for (int i = 0; i < totalRoutes;i++) {
         openFile(routes[i]);
         createArrayOfRoute(arrayOfRoutes[i],routes[i]); //Fulfilling the list with the void function
         closeFile(routes[i]);
-    }
+    }*/
+    //What works
+    createArrayOfRoutes(arrayOfRoutes,totalRoutes,routes);
 
 
     interFace1();//Printing the first interfae that the user will recieve
