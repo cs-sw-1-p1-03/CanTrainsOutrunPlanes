@@ -5,11 +5,8 @@
  * @param arrayOfRoutes The array that contains all routes.
  * @param totalRoutes The total amount of routes available.
  */
-void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes)
+void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[],route_t routes[],int totalRoutes)
 {
-
-    route_t routes[totalRoutes]; //Creating an empty array of routes
-    routesFilesOpen(routes); //Filling it up
 
     // starting at -1 because our list elements start at 0. Starting at allows element at line 0 to be included
     int departureIndex = -1;
