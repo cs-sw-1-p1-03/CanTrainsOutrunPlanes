@@ -74,6 +74,7 @@ void routesFilesOpen(route_t routes[]){
  * Creates an array of routes, that will be used in the rest of the program.
  * @param arrayOfRoutes The array of list that will populated.
  * @param totalRoutes The total amount of routes available.
+ * @param routes Our open routes. -- more specifit comments is needed
  */
 void createArrayOfRoutes(list_t arrayOfRoutes[], int totalRoutes,route_t routes[]){
 
