@@ -28,7 +28,7 @@ int main() {
     routeFile_t routes[totalRoutes]; //Creating an empty array of routes
     defineFiles2(routes,totalRoutes); //Filling it up
 
-    /* What Brian Wants
+    /* This would be optimal
     for (int i = 0; i < totalRoutes;i++) {
         openFile(routes[i]);
         createArrayOfRoute(arrayOfRoutes[i],routes[i]); //Fulfilling the list with the void function

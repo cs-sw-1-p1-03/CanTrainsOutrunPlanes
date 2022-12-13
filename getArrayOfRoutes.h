@@ -78,7 +78,7 @@ void createArrayOfRoutes(route_t arrayOfRoutes[], int totalRoutes,routeFile_t ro
     }
 }
 
-//alternativ for Brian's wishes. Does not work. Dont know why...
+//alternativ you would do this. Does not work. Dont know why...
 /*
 void openFile(routeFile_t route){
     route.file = fopen(route.fileName,"r");

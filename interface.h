@@ -21,22 +21,12 @@ void interFace2()
 }
 
 /**
- * Function that scans the departure city
+ * Function that scans the desired city
  * @param departureCity this is where we save the variable
  */
-void scanDepartureCity(char departureCity[])
+void scanDesiredCity(char desiredCity[])
 {
-    printf("Please enter your desired departure destination.\n");
-    scanf("%s", departureCity);
+    printf("Please enter your desired destination.\n");
+    scanf("%s", desiredCity);
 
-}
-
-/**
- * Function that scans the arrival city
- * @param departureCity this is where we save the variable
- */
-void scanArrivalCity(char arrivalCity[])
-{
-    printf("Please enter your desired arrival destination.\n");
-    scanf("%s", arrivalCity);
 }

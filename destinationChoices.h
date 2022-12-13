@@ -2,7 +2,7 @@
 #include "stdio.h"
 
 typedef struct {
-    char string[30];
+    char string[35];
 }arrayOfStrings_t;
 
 void destinationChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,arrayOfStrings_t cityChoices[]){
@@ -26,12 +26,14 @@ void destinationChoices(routeFile_t routes[], route_t arrayOfRoutes[], int total
             }
         }
     }
+    /*
     for (int k = 0; k < 50; k++) {
         if (strcmp(cityChoices[k].string, "") == 0) {
             strcpy(cityChoices[k].string, "CPHAirport");
             break;
         }
     }
+     */
 }
 
 void arrivalChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,char departureCity[], arrayOfStrings_t cityChoices[],arrayOfStrings_t arrivalChoice[]){
