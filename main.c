@@ -48,13 +48,14 @@ int main() {
 
     interFace2();//Printing the second interface that the user will receive about the details they will get
 
-
+    printf("Please enter your departure.\n");
     failsafeCityChoice(departureCity, cityChoices);
 
     arrayOfStrings_t arrivalChoice[50];
     arrivalChoices(routes,arrayOfRoutes,totalRoutes, departureCity, cityChoices, arrivalChoice);
     printChoices( arrivalChoice);
 
+    printf("Please enter your arrival city.\n");
     failsafeCityChoice(arrivalCity,arrivalChoice);
 
 

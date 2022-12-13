@@ -26,7 +26,5 @@ void interFace2()
  */
 void scanDesiredCity(char desiredCity[])
 {
-    printf("Please enter your desired destination.\n");
     scanf("%s", desiredCity);
-
 }
