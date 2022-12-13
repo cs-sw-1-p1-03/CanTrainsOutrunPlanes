@@ -1,14 +1,32 @@
 #include <stdio.h>
 
-// Function type is void since using a char does not allow for multiple returns
-void interface(char departureCity[], char arrivalCity[])
-{
-    printf("Hello User\n"
-           "Choose your departure destination and your arrival destination\n"
-           "You can choose between: \n"
-           "CPHAirport - Aalborg ... WRITE IN SPECIFICS \n"
-           "Once you have selected your destinations the program will return the following: \n"
-           "Travel time, Distance, CO2 Emission, (Price?), Comparison between planes and trains.\n");
+/**
+ * Simple function to print a welcome message to the user
+ */
+void interFace1() {
 
-    scanf("%s %s", departureCity, arrivalCity);
+    printf("                            Hello User\n"
+           "---------------------------------------------------------------------------------\n"
+           "In this program you enter your departure destination and your arrival destination.\n"
+    );
+}
+/**
+ * Simple function to print the info about the functionality of the program.
+ */
+void interFace2()
+{
+    printf("\nOnce you have selected your destination the program will return the following: \n"
+           "Travel time, CO2 Emission and a comparison between airplanes and trains.\n"
+           "---------------------------------------------------------------------------------\n\n");
+}
+
+/**
+ * Function that scans the desired city
+ * @param departureCity this is where we save the variable
+ */
+void scanDesiredCity(char desiredCity[])
+{
+    printf("Please enter your desired destination.\n");
+    scanf("%s", desiredCity);
+
 }

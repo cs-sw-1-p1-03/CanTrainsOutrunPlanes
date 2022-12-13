@@ -1,0 +1,17 @@
+empty CPHAirport
+CPHAirport CopenhagenH 29.5 24 11.8
+CopenhagenH Ringsted 101.5 35 59.2
+Ringsted Slagelse 105.4 18 31.6
+Slagelse Nyborg 112.5 22 41.25
+Nyborg Odense 129.84 15 32.46
+Odense Middelfart 177.28 23 68
+Middelfart Fredericia 29.75 14 6.9
+Fredericia Vejle 101.16 15 25.3
+Vejle VejleHospital 43.5 2 1.45
+VejleHospital Jelling 70.03 11 12.84
+Jelling Give 86.7 12 17.34
+Give Thyregod 80.0 6 8.0
+Thyregod Brande 81.1 7 9.46
+Brande Herning 97.1 15 24.28
+Herning Karup 41 37 25.3
+Karup
