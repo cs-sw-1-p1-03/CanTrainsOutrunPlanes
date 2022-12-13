@@ -26,7 +26,7 @@ int main() {
     //This list is empty
 
     routeFile_t routes[totalRoutes]; //Creating an empty array of routes
-    defineFiles2(routes,totalRoutes); //Filling it up
+    defineFiles(routes,totalRoutes); //Filling it up
 
     /* This would be optimal
     for (int i = 0; i < totalRoutes;i++) {
@@ -66,7 +66,6 @@ int main() {
     transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//Calculating whether the user will be directly at the station/airport or if they are using a bus
 
     advancedDetails(arrayOfRoutes, totalRoutes, routes /*, arrivalCity, departureCity*/);//In this section we explain in more details how the calculations went through it.
-
 
         return 0;
     }

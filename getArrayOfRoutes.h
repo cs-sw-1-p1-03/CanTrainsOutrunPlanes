@@ -25,7 +25,7 @@ typedef struct{
     double totalTravelCO2;
     double totalCO2; //change to routeCO2?
     double averageSpeed;
-}route_t; //!!!This name has to be changed, Brian will notice.
+}route_t;
 
 //This struct is used to streamline the reading of route files, and the population of the final array of routes.
 typedef struct{
@@ -58,7 +58,7 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
  * Opens all files into an array
  * @param routes The list that will be populated with the opened files.
  */
-void defineFiles2(routeFile_t routes[],int totalRoutes){
+void defineFiles(routeFile_t routes[],int totalRoutes){
 
     char* fileNames[10] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt","IC CPH AAL.txt","IC CPH BLL.txt","ICL CPH BLL.txt","ICL CPH KRP.txt","IC CPH KRP.txt"};
     int fileLengths[10] = {5,13,12,9,16,14,10,13,17};
