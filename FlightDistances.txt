@@ -1,5 +1,5 @@
-CPHAirport Aalborg 1 45 239
-CPHAirport AarhusH 2 40 148
-CPHAirport Billund 3 350 221
-CPHAirport Karup 4 46 233
-CPHAirport Sonderborg 6 45 196
+CPHAirport Aalborg 0 45 239
+CPHAirport AarhusH 0 40 148
+CPHAirport Billund 0 350 221
+CPHAirport Karup 0 46 233
+CPHAirport Sonderborg 0 45 196
