@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "ctype.h"
 #include "stdbool.h"
+
 /**
  * Function to check if a string is made of numbers only.
  * @param key Takes in the string this is to be checked.
@@ -25,6 +26,8 @@ int stringCheck(char scanText[]){
     }while(strcmp(temp,scanText)!=0);
     return 1;
 }
+
+
 /**
  * Contains most logic of the program, including calls to other functions.
  * @param arrayOfRoutes Takes in the array of routes used throughout the program.
@@ -33,34 +36,46 @@ int stringCheck(char scanText[]){
  * @param arrivalCity Takes in an arrival city.
  * @param departureCity Takes in an departure city.
  */
+
+int scanNumber(char text[]){
+    char input[5];
+    do {
+        printf("%s",text);
+        scanf("%5s", input);
+    } while (!digitCheck(input));
+
+    int result = atoi(input);
+    return result;
+}
+void scanChar(char input[],char* matchArray[],int arrayLength,char text[]){
+    int flip = 0;
+    do{
+        scanf("%s",input);
+        for (int i = 0; i < arrayLength;i++) {
+            if (strcmp(input, matchArray[i]) == 0) {
+                flip = 1;
+                break;
+            }
+        }
+        if (flip)
+            break;
+
+    }while(strcmp(input,"exit")!=0);
+
+}
+
 void transportToNodes(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[], char arrivalCity[], char departureCity[]) {
     char luggage[10];
     int distanceFromStation, distanceFromAirport; //Initializing distance to calculate from the different nodes
 
     // ------------------------ failsafe
-    char input[5];
-    do {
-        printf("\nType your distance to the train station in km.\n");
-        scanf("%5s", input);
-    } while (!digitCheck(input));
 
-    distanceFromStation = atoi(input);
+    distanceFromStation = scanNumber("\nType your distance to the train station in km.\n");
+    distanceFromAirport = scanNumber("\nType your distance to the airport in km.\n");
 
-    //Failsafe
-    do {
-        printf("\nType your distance to the airport in km.\n");
-        scanf("%5s", input);
-    } while (!digitCheck(input));
+    char* yesNo[2] = {"yes","no"};
+    scanChar(luggage,yesNo,2,"Are you taking luggage(yes/no)?\n");
 
-    distanceFromAirport = atoi(input);
-
-    while (1) {
-        printf("Are you taking luggage (yes/no)?\n");
-        scanf("%s", luggage);
-        if (strcmp(luggage, "no") == 0 || strcmp(luggage, "yes") == 0) {
-            break;
-        }
-    }
 
 
     double walkResult, averageWalkSpeed = 5, busResult, averageBusSpeed = 30;
