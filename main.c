@@ -38,14 +38,14 @@ int main() {
     createArrayOfRoutes(arrayOfRoutes,totalRoutes,routes);
 
 
-    interFace1();//Printing the first interfae that the user will recieve
+    displayWelcomeMessage();//Printing the first interface that the user will recieve
 
-    arrayOfStrings_t cityChoices[50];
+    arrayOfStrings_t cityChoices[50]; //arrayOfChoices? cities choices, city list?
     destinationChoices(routes, arrayOfRoutes, totalRoutes,  cityChoices);
 
     printChoices(cityChoices);
 
-    interFace2();//Printing the second interface that the user will receive about the details they will get
+    interFace2();//Printing the second interface that the user will receive about the details they will get   //change name
 
 
     scanChar(departureCity,cityChoices,50,"Please enter your departure\n");

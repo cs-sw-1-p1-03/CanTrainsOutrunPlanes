@@ -3,7 +3,7 @@
 /**
  * Simple function to print a welcome message to the user
  */
-void interFace1() {
+void displayWelcomeMessage() {
 
     printf("                            Hello User\n"
            "---------------------------------------------------------------------------------\n"

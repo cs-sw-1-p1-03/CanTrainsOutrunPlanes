@@ -3,20 +3,19 @@
 
 
 void scanChar(char input[],arrayOfStrings_t match[],int arrayLength,char text[]){
-    int flip = 0;
+    int found = 0;
     do{
         printf("%s",text);
         scanf("%s",input);
-        for (int i = 0; i < arrayLength;i++) {
+        for (int i = 0; i < arrayLength && found == 0; i++) {
             if (strcmp(input, match[i].string) == 0) {
-                flip = 1;
-                break;
+                found = 1;
+
             }
         }
-        if (flip)
-            break;
 
-    }while(strcmp(input,"exit")!=0);
+
+    }while(strcmp(input,"exit")!=0 && found == 0);
 
 }
 

@@ -6,7 +6,7 @@
 
 //The underlying struct for the segments of the routes
 typedef struct {
-    // The parameters follow the structure of the lists
+    // The parameters follow the structure of the lists   //const int eller define i headerfil
     char departureCity[20];
     char arrivalCity[20];
     double speed;
