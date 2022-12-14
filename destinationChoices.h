@@ -6,7 +6,6 @@ typedef struct {
 }arrayOfStrings_t;
 
 void destinationChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,arrayOfStrings_t cityChoices[]){
-
     for (int k = 0; k < 50; k++) {
         strcpy(cityChoices[k].string, "");
     }
