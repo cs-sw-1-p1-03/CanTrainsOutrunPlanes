@@ -7,10 +7,10 @@
 #include "getArrayOfRoutes.h"
 #include "searchRoutes.h"
 #include "emissionCalculator.h"
-#include "transportToNodes.h"
 #include "advancedDetails.h"
 #include "destinationChoices.h"
 #include "failSafe.h"
+#include "transportToNodes.h"
 
 //void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
 
@@ -40,23 +40,22 @@ int main() {
 
     interFace1();//Printing the first interfae that the user will recieve
 
-
     arrayOfStrings_t cityChoices[50];
     destinationChoices(routes, arrayOfRoutes, totalRoutes,  cityChoices);
-    printChoices(cityChoices);
 
+    printChoices(cityChoices);
 
     interFace2();//Printing the second interface that the user will receive about the details they will get
 
-    failsafeCityChoice(departureCity, cityChoices,"Please enter your departure\n");
+
+    scanChar(departureCity,cityChoices,50,"Please enter your departure\n");
 
     arrayOfStrings_t arrivalChoice[50];
     arrivalChoices(routes,arrayOfRoutes,totalRoutes, departureCity, cityChoices, arrivalChoice);
     printChoices( arrivalChoice);
 
 
-    failsafeCityChoice(arrivalCity,arrivalChoice,"Please enter your arrival city.\n");
-
+    scanChar(arrivalCity,arrivalChoice,50,"Please enter your arrival city\n");
 
     searchRoutes(arrivalCity, departureCity, arrayOfRoutes, routes, totalRoutes); //Reading the list
 

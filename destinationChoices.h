@@ -26,14 +26,6 @@ void destinationChoices(routeFile_t routes[], route_t arrayOfRoutes[], int total
             }
         }
     }
-    /*
-    for (int k = 0; k < 50; k++) {
-        if (strcmp(cityChoices[k].string, "") == 0) {
-            strcpy(cityChoices[k].string, "CPHAirport");
-            break;
-        }
-    }
-     */
 }
 
 void arrivalChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,char departureCity[], arrayOfStrings_t cityChoices[],arrayOfStrings_t arrivalChoice[]){
@@ -85,8 +77,7 @@ void printChoices(arrayOfStrings_t cityChoices[]){
         if (strcmp(cityChoices[k].string, "") != 0) {
             printf(" %-13s \t", cityChoices[k].string);
             table++;
-            // int length = sizeof(cityChoices[k]);
-            //if(length >= 4)
+
             if (table >= 3) {
                 printf("\n");
                 table = 0;

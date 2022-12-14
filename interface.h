@@ -20,11 +20,3 @@ void interFace2()
            "---------------------------------------------------------------------------------\n\n");
 }
 
-/**
- * Function that scans the desired city
- * @param departureCity this is where we save the variable
- */
-void scanDesiredCity(char desiredCity[])
-{
-    scanf("%s", desiredCity);
-}
