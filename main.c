@@ -41,18 +41,23 @@ int main() {
     interFace1();//Printing the first interfae that the user will recieve
 
     arrayOfStrings_t cityChoices[50];
-    destinationChoices(routes, arrayOfRoutes, totalRoutes,  cityChoices);
+    char* cityChoices2[]= {"","","","","","","","","","","","","","","","","","","","",""};
 
-    printChoices(cityChoices);
+   // destinationChoices(routes, arrayOfRoutes, totalRoutes,  cityChoices);
+    destinationChoices2(routes, arrayOfRoutes, totalRoutes,  cityChoices2);
+
+    //printChoices(cityChoices);
+    printChoices2(cityChoices2);
 
     interFace2();//Printing the second interface that the user will receive about the details they will get
 
 
-    scanChar(departureCity,cityChoices,50,"Please enter your departure\n");
+    scanChar2(departureCity,cityChoices2,50,"Please enter your departure\n");
+
 
     arrayOfStrings_t arrivalChoice[50];
-    arrivalChoices(routes,arrayOfRoutes,totalRoutes, departureCity, cityChoices, arrivalChoice);
-    printChoices( arrivalChoice);
+    //arrivalChoices(routes,arrayOfRoutes,totalRoutes, departureCity, cityChoices, arrivalChoice);
+    //printChoices( arrivalChoice);
 
 
     scanChar(arrivalCity,arrivalChoice,50,"Please enter your arrival city\n");

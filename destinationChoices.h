@@ -27,6 +27,28 @@ void destinationChoices(routeFile_t routes[], route_t arrayOfRoutes[], int total
         }
     }
 }
+void destinationChoices2(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes, char* cityChoices[]){
+
+    for (int k = 0; k < 20; k++) {
+        //strcpy(cityChoices[k], "");
+    }
+
+    for (int i = 0; i < totalRoutes; i++) {
+        for (int j = 0; j < routes[i].length; j++) {
+            int foundInList = 0;
+            for (int k = 0; k < 20; k++) {
+
+                if (strcmp(arrayOfRoutes[i].list[j].arrivalCity, cityChoices[k]) == 0) {
+                    foundInList = 1;
+                }
+                if (foundInList == 0 && strcmp(cityChoices[k], "") == 0) {
+                    strcpy(cityChoices[k], arrayOfRoutes[i].list[j].arrivalCity);
+                    break;
+                }
+            }
+        }
+    }
+}
 
 void arrivalChoices(routeFile_t routes[], route_t arrayOfRoutes[], int totalRoutes,char departureCity[], arrayOfStrings_t cityChoices[],arrayOfStrings_t arrivalChoice[]){
     for (int k = 0; k < 50; k++) {
@@ -76,6 +98,24 @@ void printChoices(arrayOfStrings_t cityChoices[]){
 
         if (strcmp(cityChoices[k].string, "") != 0) {
             printf(" %-13s \t", cityChoices[k].string);
+            table++;
+
+            if (table >= 3) {
+                printf("\n");
+                table = 0;
+            }
+        }
+    }
+    printf("\n");
+}
+void printChoices2(char* cityChoices[]){
+    printf("You can choose between:\n");
+
+    int table = 0;
+    for (int k = 0; k < 20; k++) {
+
+        if (strcmp(cityChoices[k],"") != 0) {
+            printf(" %-13s \t",cityChoices[k]);
             table++;
 
             if (table >= 3) {

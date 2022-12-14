@@ -19,6 +19,23 @@ void scanChar(char input[],arrayOfStrings_t match[],int arrayLength,char text[])
     }while(strcmp(input,"exit")!=0);
 
 }
+void scanChar2(char input[],char* match[],int arrayLength,char text[]){
+    int flip = 0;
+    do{
+        printf("%s",text);
+        scanf("%s",input);
+        for (int i = 0; i < arrayLength;i++) {
+            if (strcmp(input, match[i]) == 0) {
+                flip = 1;
+                break;
+            }
+        }
+        if (flip)
+            break;
+
+    }while(strcmp(input,"exit")!=0);
+
+}
 
 bool digitCheck(char key[])
 {

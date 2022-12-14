@@ -133,8 +133,9 @@ void transportToNodes(route_t arrayOfRoutes[], int totalRoutes, routeFile_t rout
     distanceFromStation = scanNumber("\nType your distance to the train station in km.\n");
     distanceFromAirport = scanNumber("\nType your distance to the airport in km.\n");
 
-    arrayOfStrings_t yesNo[] = {"yes","no"};
-    scanChar(luggage,yesNo,2,"Are you taking luggage(yes/no)?\n");
+    //arrayOfStrings_t yesNo[] = {"yes","no"};
+    char* yesNo[] = {"yes","no"};
+    scanChar2(luggage,yesNo,2,"Are you taking luggage(yes/no)?\n");
 
 
 
