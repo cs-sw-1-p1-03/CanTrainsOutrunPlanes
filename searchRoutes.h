@@ -1,11 +1,11 @@
 /**
- * Searches the array of routes for the given arrival- and departure city (Both ways).
+ * Searches the array of routeFileArray for the given arrival- and departure city (Both ways).
  * @param arrivalCity The city from where the route starts.
  * @param departureCity The city where the route will end.
- * @param arrayOfRoutes The array that contains all routes.
- * @param totalRoutes The total amount of routes available.
+ * @param arrayOfRoutes The array that contains all routeFileArray.
+ * @param totalRoutes The total amount of routeFileArray available.
  */
-void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoutes[],routeFile_t routes[],int totalRoutes)
+void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoutes[], routeFile_t routeFileArray[])
 {
 
     // starting at -1 because our list elements start at 0. Starting at allows element at line 0 to be included
@@ -13,11 +13,11 @@ void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoute
     int arrivalIndex = -1;
 
     //Making sure that no list is found before we start searching.
-    for (int i = 0; i < totalRoutes; i++) {
+    for (int i = 0; i < numberOfRoutes; i++) {
         arrayOfRoutes[i].found = 0;
     }
 
-    for (int i = 0; i < totalRoutes; i++) {
+    for (int i = 0; i < numberOfRoutes; i++) {
         arrayOfRoutes[i].totalTime = 0;
         arrayOfRoutes[i].totalDistance = 0;
         arrayOfRoutes[i].averageSpeed = 0;
@@ -25,7 +25,7 @@ void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoute
 
     for (int i = 0; i < 1; i++) {
 
-        for (int j = 0; j < routes[i].length; j++) { //for every line
+        for (int j = 0; j < routeFileArray[i].length; j++) { //for every line
             if ((strcmp(arrayOfRoutes[i].list[j].departureCity, departureCity) == 0 &&
                  strcmp(arrayOfRoutes[i].list[j].arrivalCity, arrivalCity) == 0) ||
                 (strcmp(arrayOfRoutes[i].list[j].arrivalCity, departureCity) == 0 &&
@@ -52,8 +52,8 @@ void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoute
     }
 
 
-        for (int i = 1; i < totalRoutes; i++) {           //for every list
-            for (int j = 0; j < routes[i].length; j++) { //for every line
+        for (int i = 1; i < numberOfRoutes; i++) {           //for every list
+            for (int j = 0; j < routeFileArray[i].length; j++) { //for every line
                 if (strcmp(arrayOfRoutes[i].list[j].departureCity, departureCity) == 0) {
                     departureIndex = j;
                 }
