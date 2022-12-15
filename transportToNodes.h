@@ -1,13 +1,5 @@
 #include "stdio.h"
 
-
-/**
- * Function to check if a string is made of numbers only.
- * @param key Takes in the string this is to be checked.
- * @return returns either the boolean true or false value, based on whether the string is a number or not.
- */
-
-
 /**
  * Contains most logic of the program, including calls to other functions.
  * @param arrayOfRoutes Takes in the array of routes used throughout the program.
@@ -15,6 +7,11 @@
  * @param routes Takes in the the array of routes.
  * @param arrivalCity Takes in an arrival city.
  * @param departureCity Takes in an departure city.
+ * @param distanceFromStation Takes in distance from station
+ * @param typeOfTransport Need a single type char of transport
+ * @param luggage Need a luggage char for "yes" or "no"
+ * @param checkInTime Need a int type for check in time in minutes
+ * @param boardingTime Nees a int type for boarding time in minutes.
  */
 
 void transport(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[],int distanceFromStation,char typeOfTransport[],char luggage[],int checkInTime,int boardingTime) {
@@ -29,7 +26,6 @@ void transport(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[],in
         luggageTime = 0;
     }
 
-    // set definitions
     busResult = (distanceFromStation * 1 / averageBusSpeed) * 60;
     busCo2 = (busEmission * distanceFromStation);
 
@@ -52,7 +48,6 @@ void transport(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[],in
     }
 }
 void transportCO2print(route_t arrayOfRoutes[],int totalRoutes,routeFile_t routes[]){
-    //In this we calculate the different variables
     for (int i = 0; i < totalRoutes; ++i) {
 
         if (arrayOfRoutes[i].found == 1) {
@@ -154,5 +149,4 @@ void transportToNodes(route_t arrayOfRoutes[], int totalRoutes, routeFile_t rout
     transportCO2print(arrayOfRoutes,totalRoutes,routes);
 
     comparison(arrayOfRoutes,totalRoutes,routes,"CO2");
-
 }

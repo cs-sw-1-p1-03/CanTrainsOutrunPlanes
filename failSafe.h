@@ -18,7 +18,11 @@ void scanChar(char input[],arrayOfStrings_t match[],int arrayLength,char text[])
     }while(strcmp(input,"exit")!=0 && found == 0);
 
 }
-
+/**
+ * Function to check if a string is made of numbers only.
+ * @param key Takes in the string this is to be checked.
+ * @return returns either the boolean true or false value, based on whether the string is a number or not.
+ */
 bool digitCheck(char key[])
 {
     for(int i = 0; i < strlen(key); i++)
@@ -31,6 +35,11 @@ bool digitCheck(char key[])
     return true;
 }
 
+/**
+ * Fucntion scans an input until the user insert a number.
+ * @param text is what prompts before the scan
+ * @return returns the finale number input in int.
+ */
 int scanNumber(char text[]){
     char input[5];
     do {
