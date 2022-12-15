@@ -62,7 +62,7 @@ void transportCO2print(route_t arrayOfRoutes[],int totalRoutes,routeFile_t route
     }
 }
 
-void comparyPart2(int airplane,int train,char typeOfTransportA[],char typeOfTransportB[],int cases);
+void compareCalculation(int airplane, int train, char typeOfTransportA[], char typeOfTransportB[], int cases);
 void comparison(route_t arrayOfRoutes[],int totalRoutes,routeFile_t routes[],char timeORCO2[]){
     int airplaneCheck = 0;
     for (int i = 0; i < totalRoutes; i++) {
@@ -83,22 +83,14 @@ void comparison(route_t arrayOfRoutes[],int totalRoutes,routeFile_t routes[],cha
             if (arrayOfRoutes[i].found == 1 && strcmp(routes[i].typeOfTransport, "Airplane") != 0) {
 
                 if (strcmp(timeORCO2, "Time") == 0 ) {
-                    if (arrayOfRoutes[indexForAirplane].totalTimeBus > arrayOfRoutes[i].totalTimeBus) {
-                        comparyPart2(arrayOfRoutes[indexForAirplane].totalTimeBus, arrayOfRoutes[i].totalTimeBus,
-                                     routes[indexForAirplane].typeOfTransport, routes[i].typeOfTransport, 1);
-                    }else{
-                        comparyPart2( arrayOfRoutes[i].totalTimeBus,arrayOfRoutes[indexForAirplane].totalTimeBus,
-                                     routes[indexForAirplane].typeOfTransport, routes[i].typeOfTransport, 1);
-                    }
+                    compareCalculation(arrayOfRoutes[indexForAirplane].totalTimeBus, arrayOfRoutes[i].totalTimeBus,
+                                       routes[indexForAirplane].typeOfTransport, routes[i].typeOfTransport, 1);
+
 
                 } else if (strcmp(timeORCO2, "CO2") == 0 ) {
-                    if (arrayOfRoutes[indexForAirplane].totalTravelCO2 > arrayOfRoutes[i].totalTravelCO2) {
-                        comparyPart2(arrayOfRoutes[indexForAirplane].totalTravelCO2, arrayOfRoutes[i].totalTravelCO2,
-                                     routes[indexForAirplane].typeOfTransport, routes[i].typeOfTransport, 0);
-                    }else{
-                        comparyPart2( arrayOfRoutes[i].totalTravelCO2,arrayOfRoutes[indexForAirplane].totalTravelCO2,
-                                      routes[i].typeOfTransport,routes[indexForAirplane].typeOfTransport, 0);
-                    }
+
+                    compareCalculation(arrayOfRoutes[indexForAirplane].totalTravelCO2, arrayOfRoutes[i].totalTravelCO2,
+                                       routes[indexForAirplane].typeOfTransport, routes[i].typeOfTransport, 0);
 
                 } else {
                     printf("something went wrong");
@@ -111,14 +103,21 @@ void comparison(route_t arrayOfRoutes[],int totalRoutes,routeFile_t routes[],cha
             printf("You can not fly to your destination");
     }
 }
-void comparyPart2(int airplane,int train,char typeOfTransportA[],char typeOfTransportB[],int time) {
+void compareCalculation(int airplane, int train, char typeOfTransportA[], char typeOfTransportB[], int time) {
     int comparedResult = airplane - train;
+    if(train > airplane)
+        comparedResult *= -1;
+
     int hours = comparedResult / 60;
     int minutes = comparedResult % 60;
     if (time)
         printf("The fastest method of transportation is %s which is %d hours and %d minutes faster than %s\n",
                typeOfTransportA, hours, minutes, typeOfTransportB);
     else
+    if(train > airplane) {
+        comparedResult *= -1;
+        printf("%s emits %.2d kg. more CO2 than than %s\n", typeOfTransportB, comparedResult, typeOfTransportA);
+    } else
         printf("%s emits %.2d kg. more CO2 than than %s\n", typeOfTransportA, comparedResult, typeOfTransportB);
 }
 
