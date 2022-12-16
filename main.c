@@ -12,14 +12,15 @@
 #include "destinationChoices.h"
 #include "failSafe.h"
 
-//void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
+#define maxCharacters 20
+#define numberOfStrings 50
 
 int main() {
     //Interface function
-    char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
-    char arrivalCity[20];   //                           --||--
+    char departureCity[maxCharacters]; // Assigning amount of characters, it does not scan properly otherwise
+    char arrivalCity[maxCharacters];   //                           --||--
 
-    char *routeFileNames[25] = {"FlightDistances.txt", "IC CPH SDG.txt", "ICL CPH AAL.txt",
+    char *routeFileNames[numberOfStrings] = {"FlightDistances.txt", "IC CPH SDG.txt", "ICL CPH AAL.txt",
                                 "ICL CPH SDG.txt", "IC CPH AAL.txt", "IC CPH BLL.txt",
                                 "ICL CPH BLL.txt", "ICL CPH KRP.txt", "IC CPH KRP.txt"};
 
@@ -28,14 +29,14 @@ int main() {
 
     int NoR = sizeof(routeFileLength) / sizeof(int);
 
-    route_t arrayOfRoutes[sizeof(*routeFileNames) / sizeof(char[25])];
-    routeFile_t arrayOfRouteFiles[sizeof(*routeFileNames) / sizeof(char[25])];
+    route_t arrayOfRoutes[NoR];
+    routeFile_t arrayOfRouteFiles[NoR];
 
     initializeArrayOfRoutes(arrayOfRoutes, arrayOfRouteFiles, routeFileNames, routeFileLength, NoR);
 
     interFaceWelcome();//Printing the first interface that the user will receive
 
-    arrayOfStrings_t cityChoices[50];
+    arrayOfStrings_t cityChoices[numberOfStrings];
     destinationChoices(arrayOfRouteFiles, arrayOfRoutes,  cityChoices);
     printChoices(cityChoices);
 
@@ -45,7 +46,7 @@ int main() {
 
     failsafeCityChoice(departureCity, cityChoices);
 
-    arrayOfStrings_t arrivalChoice[50];
+    arrayOfStrings_t arrivalChoice[numberOfStrings];
     arrivalChoices(arrayOfRouteFiles, arrayOfRoutes,  departureCity, cityChoices, arrivalChoice);
     printChoices(arrivalChoice);
 
