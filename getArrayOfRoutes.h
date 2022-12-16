@@ -47,11 +47,9 @@ void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray
 
 
     initializeRouteFileList(routeFileArray, routeFileNames, routeFileLengths);
-    printf("|i:0 = %d|\n", routeFileLengths[0]); //!!Here
 
     for (int i = 0; i < numberOfRoutes; ++i) {
         routeFileArray[i].file = fopen(routeFileArray[i].fileName,"r");
-        printf("|i:0 = %d|", routeFileLengths[0]); //!!Here
         readIntervalsFromFile(arrayOfRoutes[i].list, routeFileLengths[i], routeFileArray[i].file);
         fclose(routeFileArray[i].file);
     }

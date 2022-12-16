@@ -58,6 +58,7 @@ void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoute
             if (strcmp(arrayOfRoutes[i].list[j].arrivalCity, arrivalCity) == 0) {
                 arrivalIndex = j;
             }
+
         }
 
         if (departureIndex >= 0 && arrivalIndex >= 0) {
@@ -73,28 +74,22 @@ void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoute
                 }
                 arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance /
                                                  (arrayOfRoutes[i].totalTime / 60));
-            } else {
+            }
+            else{
                 // list is read downwards
-                for (int p = departureIndex; p < arrivalIndex + 1; p++) {
-                    //Adding all the time, saved from the list
-                    arrayOfRoutes[i].totalTime += arrayOfRoutes[i].list[p].time;
-                    // Accumulating the distance of all stops along the way, to determine the length of the route
-                    arrayOfRoutes[i].totalDistance += arrayOfRoutes[i].list[p].distance;
-                }
+                    for (int p = departureIndex; p < arrivalIndex + 1; p++) {
+                      //Adding all the time, saved from the list
+                      arrayOfRoutes[i].totalTime += arrayOfRoutes[i].list[p].time;
+                      // Accumulating the distance of all stops along the way, to determine the length of the route
+                      arrayOfRoutes[i].totalDistance += arrayOfRoutes[i].list[p].distance;
+                    }
                 // Calculating the average speed across the given route
                 arrayOfRoutes[i].averageSpeed = (arrayOfRoutes[i].totalDistance /
                                                  (arrayOfRoutes[i].totalTime / 60));
+                }
             }
-
-
-           // printf("index %d and %d: ", departureIndex, arrivalIndex); //Printing of index for debugging purposes
-
-
-            // Resetting so Indexes are no longer equal to j
-        }
 
         departureIndex = -1;
         arrivalIndex = -1;
-    }
-
+        }
 }

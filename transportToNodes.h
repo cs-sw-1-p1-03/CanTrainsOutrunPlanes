@@ -20,11 +20,14 @@ void transport(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[],in
     double busCo2, busEmission = 11; //Assuming based on data that bus emission is 11 grams of CO2 per person km
 
     int luggageTime = 0;
+
+    if (strcmp("Airplane", typeOfTransport) == 0) {
     if (strcmp(luggage, "yes") == 0) {
         luggageTime = 22;
     } else if (strcmp(luggage, "no") == 0) {
         luggageTime = 0;
     }
+}
 
     busResult = (distanceFromStation * 1 / averageBusSpeed) * 60;
     busCo2 = (busEmission * distanceFromStation);
@@ -39,7 +42,7 @@ void transport(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[],in
         }
 
         if (arrayOfRoutes[i].found == 1 && strcmp(routes[i].typeOfTransport, typeOfTransport) == 0) {
-            printf("%s ", routes[i].typeOfTransport);
+            printf("Route %d - %s ",i, routes[i].typeOfTransport);
             hours = arrayOfRoutes[i].totalTimeBus / 60;
             minutes = arrayOfRoutes[i].totalTimeBus % 60;
 
@@ -51,7 +54,7 @@ void transportCO2print(route_t arrayOfRoutes[],int totalRoutes,routeFile_t route
     for (int i = 0; i < totalRoutes; ++i) {
 
         if (arrayOfRoutes[i].found == 1) {
-            printf("%s emits %.2lf kg. CO2.\n", routes[i].typeOfTransport, arrayOfRoutes[i].totalTravelCO2);
+            printf("Route %d %s emits %.2lf kg. CO2.\n",i, routes[i].typeOfTransport, arrayOfRoutes[i].totalTravelCO2);
 
         }
     }
