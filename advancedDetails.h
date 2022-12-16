@@ -6,8 +6,9 @@
  */
 void advancedDetails(route_t arrayOfRoutes[], routeFile_t routeFileArray[]) {
     int detail;
-    printf("\n\nPress 1 for advanced details or press 2 to exit");
-    scanf("%d", &detail);
+
+    printf("\n\nPress 1 for advanced details otherwise exit");
+    scanf("%d",&detail);
 
     if (detail == 1) {
         printf("\n\n                             Advanced details:\n"

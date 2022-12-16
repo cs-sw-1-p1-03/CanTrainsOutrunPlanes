@@ -24,7 +24,6 @@ void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoute
     }
 
     for (int i = 0; i < 1; i++) {
-
         for (int j = 0; j < routeFileArray[i].length; j++) { //for every line
             if ((strcmp(arrayOfRoutes[i].list[j].departureCity, departureCity) == 0 &&
                  strcmp(arrayOfRoutes[i].list[j].arrivalCity, arrivalCity) == 0) ||
