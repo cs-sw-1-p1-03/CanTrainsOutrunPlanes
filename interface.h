@@ -13,7 +13,7 @@ void displayWelcomeMessage() {
 /**
  * Simple function to print the info about the functionality of the program.
  */
-void interFace2()
+void displayInfo()
 {
     printf("\nOnce you have selected your destination the program will return the following: \n"
            "Travel time, CO2 Emission and a comparison between airplanes and trains.\n"

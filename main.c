@@ -12,58 +12,51 @@
 #include "failSafe.h"
 #include "transportToNodes.h"
 
-//void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
+#define maxCharacters 20
+#define numberOfStrings 50
 
 int main() {
     //Interface function
-    char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
-    char arrivalCity[20];   //                           --||--
-    int totalRoutes = 9;
+    char departureCity[maxCharacters]; // Assigning amount of characters, it does not scan properly otherwise
+    char arrivalCity[maxCharacters];   //                           --||--
 
-    //array for routes
-    route_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
-    //The list is defined as an array of arrays(routeIntervals_t)
-    //This list is empty
+    char *routeFileNames[numberOfStrings] = {"FlightDistances.txt", "IC CPH SDG.txt", "ICL CPH AAL.txt",
+                                "ICL CPH SDG.txt", "IC CPH AAL.txt", "IC CPH BLL.txt",
+                                "ICL CPH BLL.txt", "ICL CPH KRP.txt", "IC CPH KRP.txt"};
 
-    routeFile_t routes[totalRoutes]; //Creating an empty array of routes
-    defineFiles(routes,totalRoutes); //Filling it up
+    int routeFileLength[] = {5,13,12,9,16,14,10,13,17};
+    
+    int NoR = sizeof(routeFileLength) / sizeof(int);
 
-    /* This would be optimal
-    for (int i = 0; i < totalRoutes;i++) {
-        openFile(routes[i]);
-        createArrayOfRoute(arrayOfRoutes[i],routes[i]); //Fulfilling the list with the void function
-        closeFile(routes[i]);
-    }*/
-    //What works
-    createArrayOfRoutes(arrayOfRoutes,totalRoutes,routes);
+    route_t arrayOfRoutes[NoR];
+    routeFile_t arrayOfRouteFiles[NoR];
 
+    initializeArrayOfRoutes(arrayOfRoutes, arrayOfRouteFiles, routeFileNames, routeFileLength, NoR);
 
     displayWelcomeMessage();//Printing the first interface that the user will recieve
 
-    arrayOfStrings_t cityChoices[50]; //arrayOfChoices? cities choices, city list?
-    destinationChoices(routes, arrayOfRoutes, totalRoutes,  cityChoices);
-
+    arrayOfStrings_t cityChoices[numberOfStrings];
+    destinationChoices(arrayOfRouteFiles, arrayOfRoutes,  cityChoices);
     printChoices(cityChoices);
 
-    interFace2();//Printing the second interface that the user will receive about the details they will get   //change name
-
+    displayInfo();//Printing the second interface that the user will receive about the details they will get
 
     scanChar(departureCity,cityChoices,50,"Please enter your departure\n");
 
-    arrayOfStrings_t arrivalChoice[50];
-    arrivalChoices(routes,arrayOfRoutes,totalRoutes, departureCity, cityChoices, arrivalChoice);
-    printChoices( arrivalChoice);
-
+    arrayOfStrings_t arrivalChoice[numberOfStrings];
+    arrivalChoices(arrayOfRouteFiles, arrayOfRoutes,  departureCity, cityChoices, arrivalChoice);
+    printChoices(arrivalChoice);
 
     scanChar(arrivalCity,arrivalChoice,50,"Please enter your arrival city\n");
 
-    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, routes, totalRoutes); //Reading the list
+    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, arrayOfRouteFiles); //Reading the list
 
-    co2Multiplier(routes, arrayOfRoutes, totalRoutes);//Finding the CO2 emission for different types of transportation
+    co2Multiplier(arrayOfRouteFiles, arrayOfRoutes);//Finding the CO2 emission for different types of transportation
 
-    transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//Calculating whether the user will be directly at the station/airport or if they are using a bus
+    transportToNodes(arrayOfRoutes,  arrayOfRouteFiles, arrivalCity, departureCity);
+    //Calculating whether the user will be directly at the station/airport or if they are using a bus
 
-    advancedDetails(arrayOfRoutes, totalRoutes, routes /*, arrivalCity, departureCity*/);//In this section we explain in more details how the calculations went through it.
+    advancedDetails(arrayOfRoutes,arrayOfRouteFiles);//In this section we explain in more details how the calculations went through it.
 
-        return 0;
-    }
+    return 0;
+}

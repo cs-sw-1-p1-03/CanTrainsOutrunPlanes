@@ -35,12 +35,71 @@ typedef struct{
     char typeOfTransport[100];
 }routeFile_t;
 
+void initializeRouteFileList(routeFile_t *routeFile, char *routeFileNames[], int routeFileLengths[]);
+void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE* routeList);
+
+int numberOfRoutes;
+
+void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray,
+                             char *routeFileNames[], int *routeFileLengths, int NoR){
+    numberOfRoutes = NoR;
+
+
+
+    initializeRouteFileList(routeFileArray, routeFileNames, routeFileLengths);
+    printf("|i:0 = %d|\n", routeFileLengths[0]); //!!Here
+
+    for (int i = 0; i < numberOfRoutes; ++i) {
+        routeFileArray[i].file = fopen(routeFileArray[i].fileName,"r");
+        printf("|i:0 = %d|", routeFileLengths[0]); //!!Here
+        readIntervalsFromFile(arrayOfRoutes[i].list, routeFileLengths[i], routeFileArray[i].file);
+        fclose(routeFileArray[i].file);
+    }
+    
+}
+
+void initializeRouteFileList(routeFile_t routeFile[], char *routeFileNames[], int routeFileLengths[]){
+    for (int i = 0; i < numberOfRoutes; ++i) {
+        strcpy(routeFile[i].fileName, routeFileNames[i]);
+        routeFile[i].length = routeFileLengths[i];
+
+        if(routeFileNames[i][0] == 'I' && routeFileNames[i][1] == 'C' && routeFileNames[i][2] == 'L') {
+            strcpy(routeFile[i].typeOfTransport, "ICL");
+        }
+        else if(routeFileNames[i][0] == 'I' && routeFileNames[i][1] == 'C'){
+            strcpy(routeFile[i].typeOfTransport, "IC");
+        }
+        else{
+            strcpy(routeFile[i].typeOfTransport, "Airplane");
+        }
+    }
+}
+
+void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE* routeList) {
+    for(int i = 0; i < numberOfIntervals; i++) {
+
+        fscanf(routeList, "%s",   list[i].departureCity);
+        //printf("%s -> ", list[i].departureCity);
+        fscanf(routeList, " %s",  list[i].arrivalCity);
+        //printf("%s |",list[i].arrivalCity);
+        fscanf(routeList, " %lf", &list[i].speed);
+        //printf("%")
+        fscanf(routeList, " %lf", &list[i].time);
+        fscanf(routeList, " %lf", &list[i].distance);
+
+
+        // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
+        // Here you can assign the values to new variables
+    }
+}
+/*
 /**
  * Function that is called to populate an entry of a routeInterval
  * @param list A list of routeIntervals that will be overriden by the data contained in the routeList argument
  * @param numberOfRoutes Takes in the number of routes available
  * @param routeList Takes in a file, that will be read and used to populate the list parameter
  */
+/*
 void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* routeList) {
     for(int i = 0; i < numberOfRoutes; i++) {
 
@@ -54,10 +113,13 @@ void readRouteFromFiles(routeIntervals_t list[], int numberOfRoutes, FILE* route
         // Here you can assign the values to new variables
     }
 }
+
+/*
 /**
  * Opens all files into an array
  * @param routes The list that will be populated with the opened files.
  */
+
 void defineFiles(routeFile_t routes[],int totalRoutes){
 
     char* fileNames[10] = {"FlightDistances.txt","IC CPH SDG.txt","ICL CPH AAL.txt","ICL CPH SDG.txt","IC CPH AAL.txt","IC CPH BLL.txt","ICL CPH BLL.txt","ICL CPH KRP.txt","IC CPH KRP.txt"};
