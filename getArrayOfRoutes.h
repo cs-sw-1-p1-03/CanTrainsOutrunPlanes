@@ -43,9 +43,6 @@ int numberOfRoutes;
 void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray,
                              char *routeFileNames[], int *routeFileLengths, int NoR){
     numberOfRoutes = NoR;
-
-
-
     initializeRouteFileList(routeFileArray, routeFileNames, routeFileLengths);
 
     for (int i = 0; i < numberOfRoutes; ++i) {
@@ -53,7 +50,6 @@ void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray
         readIntervalsFromFile(arrayOfRoutes[i].list, routeFileLengths[i], routeFileArray[i].file);
         fclose(routeFileArray[i].file);
     }
-    
 }
 
 void initializeRouteFileList(routeFile_t routeFile[], char *routeFileNames[], int routeFileLengths[]){
@@ -77,14 +73,10 @@ void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE*
     for(int i = 0; i < numberOfIntervals; i++) {
 
         fscanf(routeList, "%s",   list[i].departureCity);
-        //printf("%s -> ", list[i].departureCity);
         fscanf(routeList, " %s",  list[i].arrivalCity);
-        //printf("%s |",list[i].arrivalCity);
         fscanf(routeList, " %lf", &list[i].speed);
-        //printf("%")
         fscanf(routeList, " %lf", &list[i].time);
         fscanf(routeList, " %lf", &list[i].distance);
-
 
         // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
         // Here you can assign the values to new variables
