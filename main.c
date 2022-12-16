@@ -34,13 +34,13 @@ int main() {
 
     initializeArrayOfRoutes(arrayOfRoutes, arrayOfRouteFiles, routeFileNames, routeFileLength, NoR);
 
-    interFaceWelcome();//Printing the first interface that the user will receive
+    displayWelcome();//Printing the first interface that the user will receive
 
     arrayOfStrings_t cityChoices[numberOfStrings];
     destinationChoices(arrayOfRouteFiles, arrayOfRoutes,  cityChoices);
     printChoices(cityChoices);
 
-    interFaceFiller();//Printing the second interface that the user will receive about the details they will get
+    displayInfo();//Printing the second interface that the user will receive about the details they will get
 
 
     scanChar(departureCity,cityChoices,50,"Please enter your departure\n");
