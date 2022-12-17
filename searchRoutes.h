@@ -1,9 +1,8 @@
 /**
  * Searches the array of routeFileArray for the given arrival- and departure city (Both ways).
- * @param arrivalCity The city from where the route starts.
- * @param departureCity The city where the route will end.
- * @param arrayOfRoutes The array that contains all routeFileArray.
- * @param totalRoutes The total amount of routeFileArray available.
+ * @param arrivalCity The city from where the route end.
+ * @param departureCity The city where the route will start.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes every routes departures and arrivals.
  */
 void searchRoutes(char arrivalCity[], char departureCity[], route_t arrayOfRoutes[], routeFile_t routeFileArray[])
 {

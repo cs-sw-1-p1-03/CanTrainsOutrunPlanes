@@ -5,9 +5,8 @@
 #define Planeem 222 // An average of (grams/Co2/passenger/kilometer) taken from "SAS årsrapport"
 /**
  * Simple function that populates the "totalCO2" field of the arrayOfRoutes.
- * @param routeFileArray Takes in the list/array of available routeFileArray.
- * @param arrayOfRoutes Takes in a pointer to the array of stops.
- * @param totalRoutes Takes in the total number of Routes.
+ * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes totalDistance
  */
 void co2Multiplier(routeFile_t routeFileArray[], route_t arrayOfRoutes[]) {
 

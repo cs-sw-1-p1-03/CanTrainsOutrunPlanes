@@ -5,8 +5,11 @@
 // We choose to use struct for our underlying datastructure, as it's suitable for small data structures which won't be modified
 
 //The underlying struct for the segments of the routes
+
+/**
+ * A struct which represent a line from txt files. Line is define
+ */
 typedef struct {
-    // The parameters follow the structure of the lists
     char departureCity[20];
     char arrivalCity[20];
     double speed;
@@ -14,20 +17,28 @@ typedef struct {
     double distance;
 }routeIntervals_t;
 
-//The struct that represents a number of route segments, and information about the given route
+
+/**
+ * A struct represent a file in route format which is determined by line of struct routeIntervals_t.
+ * It includes variables such as totalTime and totalCO2 to determined the routes time and CO2.
+ * The integer found is used as a boolean. 1 if the route is possible (includes departure and arrival) and 0 for not.
+ * The rest variables are used for calculations and prints.
+ */
 typedef struct{
     routeIntervals_t list[100];
     int found;
-    double totalTime;   //RouteTime?
+    double totalTime;
     int totalTimeBus;
-    double totalTimeWalk;
     double totalDistance;
     double totalTravelCO2;
-    double totalCO2; //change to routeCO2?
+    double totalCO2;
     double averageSpeed;
 }route_t;
 
-//This struct is used to streamline the reading of route files, and the population of the final array of routes.
+/**
+ * A struct represent the file, including the file, fileName, Length and typeOfTransport.
+ * Used in opening and closing files.
+ */
 typedef struct{
     FILE* file;
     char fileName[30];
@@ -40,6 +51,15 @@ void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE*
 
 int numberOfRoutes;
 
+/**
+ * Calls initializeRouteFileList defines the typeofTransport.
+ * for every file it: opens a file, reads it with readIntervalsFromFile and close it.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes totalDistance
+ * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param routeFileNames A 2D string array for the txt.files
+ * @param routeFileLengths An integer array for the length of each files.
+ * @param NoR Is determined numberOfRoutes. Also total number of files.
+ */
 void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray,
                              char *routeFileNames[], int *routeFileLengths, int NoR){
     numberOfRoutes = NoR;
@@ -52,6 +72,12 @@ void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray
     }
 }
 
+/**
+ * Function that returns the typeOfTransport in routeFile.typeOfTransport by checking the first 3 number from each text filename.
+ * @param routeFile A struct representing the file
+ * @param routeFileNames A 2D string array for the txt.files
+ * @param routeFileLengths An integer array for the length of each files.
+ */
 void initializeRouteFileList(routeFile_t routeFile[], char *routeFileNames[], int routeFileLengths[]){
     for (int i = 0; i < numberOfRoutes; ++i) {
         strcpy(routeFile[i].fileName, routeFileNames[i]);
@@ -68,7 +94,12 @@ void initializeRouteFileList(routeFile_t routeFile[], char *routeFileNames[], in
         }
     }
 }
-
+/**
+ * Function that reads our text file and return is into list[].
+ * @param list An array of struct routeIntervals_t which determined each row in the files.
+ * @param numberOfIntervals Integer for number of lines
+ * @param routeList Needs to be a type FILE and has to be open.
+ */
 void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE* routeList) {
     for(int i = 0; i < numberOfIntervals; i++) {
 
@@ -78,7 +109,5 @@ void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE*
         fscanf(routeList, " %lf", &list[i].time);
         fscanf(routeList, " %lf", &list[i].distance);
 
-        // String Copy because cant assign strings to new variable. strcpy copies element by element of the array
-        // Here you can assign the values to new variables
     }
 }

@@ -1,7 +1,13 @@
 #include "ctype.h"
 #include "stdbool.h"
 
-
+/**
+ * Function compare does scanf until input is matching a string of match array.
+ * @param input The function returns the input when match is found.
+ * @param match Array of strings to match specify possible inputs.
+ * @param arrayLength Number of strings to be compared.
+ * @param text Is what prompts before scan.
+ */
 void scanChar(char input[],arrayOfStrings_t match[],int arrayLength,char text[]){
     int found = 0;
     do{
@@ -13,8 +19,6 @@ void scanChar(char input[],arrayOfStrings_t match[],int arrayLength,char text[])
 
             }
         }
-
-
     }while(strcmp(input,"exit")!=0 && found == 0);
 
 }

@@ -19,14 +19,3 @@ void displayInfo()
            "Travel time, CO2 Emission and a comparison between airplanes and trains.\n"
            "---------------------------------------------------------------------------------\n\n");
 }
-
-/**
- * Function that scans the desired city
- * @param departureCity this is where we save the variable
- */
-void scanDesiredCity(char desiredCity[])
-{
-    printf("Please enter your desired destination.\n");
-    scanf("%s", desiredCity);
-
-}

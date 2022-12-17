@@ -1,7 +1,6 @@
 /**
  * UI function that prints further details to a given route.
  * @param arrayOfRoutes takes in the entire array of destinations.
- * @param totalRoutes takes in the number of available routeFileArray.
  * @param routeFileArray takes in the list/array of available routeFileArray
  */
 void advancedDetails(route_t arrayOfRoutes[], routeFile_t routeFileArray[]) {
