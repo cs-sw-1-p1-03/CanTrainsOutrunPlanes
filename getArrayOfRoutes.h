@@ -2,10 +2,6 @@
 #include <stdio.h>
 
 
-// We choose to use struct for our underlying datastructure, as it's suitable for small data structures which won't be modified
-
-//The underlying struct for the segments of the routes
-
 /**
  * A struct which represent a line from txt files. Line is define
  */
@@ -20,12 +16,14 @@ typedef struct {
 
 /**
  * A struct represent a file in route format which is determined by line of struct routeIntervals_t.
+ * TypeOfTransport is assigned as for trains: IC or ICL. Otherwise Airplane
  * It includes variables such as totalTime and totalCO2 to determined the routes time and CO2.
  * The integer found is used as a boolean. 1 if the route is possible (includes departure and arrival) and 0 for not.
  * The rest variables are used for calculations and prints.
  */
 typedef struct{
     routeIntervals_t list[100];
+    char typeOfTransport[100];
     int found;
     double totalTime;
     int totalTimeBus;
@@ -36,17 +34,16 @@ typedef struct{
 }route_t;
 
 /**
- * A struct represent the file, including the file, fileName, Length and typeOfTransport.
+ * A struct represent the file, including the file, fileName and Length.
  * Used in opening and closing files.
  */
 typedef struct{
     FILE* file;
     char fileName[30];
     int length;
-    char typeOfTransport[100];
 }routeFile_t;
 
-void initializeRouteFileList(routeFile_t *routeFile, char *routeFileNames[], int routeFileLengths[]);
+void initializeRouteFileList(routeFile_t *routeFile, char *routeFileNames[], int routeFileLengths[],route_t arrayOfRoutes[]);
 void readIntervalsFromFile(routeIntervals_t list[], int numberOfIntervals, FILE* routeList);
 
 int numberOfRoutes;
@@ -54,8 +51,8 @@ int numberOfRoutes;
 /**
  * Calls initializeRouteFileList defines the typeofTransport.
  * for every file it: opens a file, reads it with readIntervalsFromFile and close it.
- * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes totalDistance
- * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes the array for routeIntervals_t.
+ * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName and length.
  * @param routeFileNames A 2D string array for the txt.files
  * @param routeFileLengths An integer array for the length of each files.
  * @param NoR Is determined numberOfRoutes. Also total number of files.
@@ -63,7 +60,7 @@ int numberOfRoutes;
 void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray,
                              char *routeFileNames[], int *routeFileLengths, int NoR){
     numberOfRoutes = NoR;
-    initializeRouteFileList(routeFileArray, routeFileNames, routeFileLengths);
+    initializeRouteFileList(routeFileArray, routeFileNames, routeFileLengths,arrayOfRoutes);
 
     for (int i = 0; i < numberOfRoutes; ++i) {
         routeFileArray[i].file = fopen(routeFileArray[i].fileName,"r");
@@ -77,20 +74,21 @@ void initializeArrayOfRoutes(route_t *arrayOfRoutes, routeFile_t *routeFileArray
  * @param routeFile A struct representing the file
  * @param routeFileNames A 2D string array for the txt.files
  * @param routeFileLengths An integer array for the length of each files.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes typeOfTransport
  */
-void initializeRouteFileList(routeFile_t routeFile[], char *routeFileNames[], int routeFileLengths[]){
+void initializeRouteFileList(routeFile_t routeFile[], char *routeFileNames[], int routeFileLengths[],route_t arrayOfRoutes[]){
     for (int i = 0; i < numberOfRoutes; ++i) {
         strcpy(routeFile[i].fileName, routeFileNames[i]);
         routeFile[i].length = routeFileLengths[i];
 
         if(routeFileNames[i][0] == 'I' && routeFileNames[i][1] == 'C' && routeFileNames[i][2] == 'L') {
-            strcpy(routeFile[i].typeOfTransport, "ICL");
+            strcpy(arrayOfRoutes[i].typeOfTransport, "ICL");
         }
         else if(routeFileNames[i][0] == 'I' && routeFileNames[i][1] == 'C'){
-            strcpy(routeFile[i].typeOfTransport, "IC");
+                strcpy(arrayOfRoutes[i].typeOfTransport, "IC");
         }
         else{
-            strcpy(routeFile[i].typeOfTransport, "Airplane");
+            strcpy(arrayOfRoutes[i].typeOfTransport, "Airplane");
         }
     }
 }

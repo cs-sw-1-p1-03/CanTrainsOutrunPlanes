@@ -2,8 +2,7 @@
 
 /**
  * Function which calculates total amount of time and CO2 including the varialbes busTime, luggage, checkInTime and BoardingTime.
- * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes totalTime and CO2.
- * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes totalTime, CO2 and typeOfTransport.
  * @param arrivalCity Takes in an arrival city.
  * @param departureCity Takes in an departure city.
  * @param distanceFromStation Takes in distance from station
@@ -12,7 +11,7 @@
  * @param checkInTime Need a int type for check in time in minutes
  * @param boardingTime Nees a int type for boarding time in minutes.
  */
-void transport(route_t arrayOfRoutes[], routeFile_t routeFileArray[], int distanceFromStation, char typeOfTransport[], char luggage[], int checkInTime, int boardingTime) {
+void transport(route_t arrayOfRoutes[], int distanceFromStation, char typeOfTransport[], char luggage[], int checkInTime, int boardingTime) {
 
     double busResult, averageBusSpeed = 30;
     double busCo2, busEmission = 11; //Assuming based on data that bus emission is 11 grams of CO2 per person km
@@ -33,14 +32,14 @@ void transport(route_t arrayOfRoutes[], routeFile_t routeFileArray[], int distan
 
     for (int i = 0; i < numberOfRoutes; ++i) {
         int hours, minutes;
-        if (strcmp(routeFileArray[i].typeOfTransport, typeOfTransport) == 0) {
+        if (strcmp(arrayOfRoutes[i].typeOfTransport, typeOfTransport) == 0) {
 
             arrayOfRoutes[i].totalTimeBus = arrayOfRoutes[i].totalTime + busResult+luggageTime+checkInTime+boardingTime;
             arrayOfRoutes[i].totalTravelCO2 = (arrayOfRoutes[i].totalCO2 + busCo2) / 1000;
         }
 
-        if (arrayOfRoutes[i].found == 1 && strcmp(routeFileArray[i].typeOfTransport, typeOfTransport) == 0) {
-            printf("Route %d - %s ", i, routeFileArray[i].typeOfTransport);
+        if (arrayOfRoutes[i].found == 1 && strcmp(arrayOfRoutes[i].typeOfTransport, typeOfTransport) == 0) {
+            printf("Route %d - %s ", i, arrayOfRoutes[i].typeOfTransport);
             hours = arrayOfRoutes[i].totalTimeBus / 60;
             minutes = arrayOfRoutes[i].totalTimeBus % 60;
 
@@ -50,14 +49,13 @@ void transport(route_t arrayOfRoutes[], routeFile_t routeFileArray[], int distan
 }
 /**
  * Function prints the CO2 emission for each possible route.
- * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes  totalTravelCO2.
  * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes TypeOfTransport.
  */
-void transportCO2print(route_t arrayOfRoutes[],routeFile_t routes[]){
+void transportCO2print(route_t arrayOfRoutes[]){
     for (int i = 0; i < numberOfRoutes; ++i) {
 
         if (arrayOfRoutes[i].found == 1) {
-            printf("Route %d %s emits %.2lf kg. CO2.\n",i, routes[i].typeOfTransport, arrayOfRoutes[i].totalTravelCO2);
+            printf("Route %d %s emits %.2lf kg. CO2.\n",i, arrayOfRoutes[i].typeOfTransport, arrayOfRoutes[i].totalTravelCO2);
 
         }
     }
@@ -66,38 +64,37 @@ void transportCO2print(route_t arrayOfRoutes[],routeFile_t routes[]){
 void compareCalculation(int airplane, int train, char typeOfTransportA[], char typeOfTransportB[], int cases);
 /**
  * Function that compares train and airplanes either time or CO2
- * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes Time and CO2.
- * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes Time, CO2 and typeOfTransport
  * @param timeORCO2 Need to be a string for time or CO2. Determined what is being compared.
  */
-void comparison(route_t arrayOfRoutes[], routeFile_t routeFileArray[], char timeORCO2[]){
+void comparison(route_t arrayOfRoutes[], char timeORCO2[]){
     int airplaneCheck = 0;
     for (int i = 0; i < numberOfRoutes; i++) {
-        if (arrayOfRoutes[i].found == 1 && strcmp(routeFileArray[i].typeOfTransport, "Airplane") == 0) {
+        if (arrayOfRoutes[i].found == 1 && strcmp(arrayOfRoutes[i].typeOfTransport, "Airplane") == 0) {
             airplaneCheck = 1;
         }
     }
     if (airplaneCheck == 1) {
 
-        printf("                                 %s comparison       \n",timeORCO2);
+        printf("\n                                 %s comparison       \n",timeORCO2);
         printf("---------------------------------------------------------------------------------\n");
         for (int i = 0; i < numberOfRoutes; i++) {
             int comparedResult, indexForAirplane, hours, minutes;
 
-            if (arrayOfRoutes[i].found == 1 && strcmp(routeFileArray[i].typeOfTransport, "Airplane") == 0) {
+            if (arrayOfRoutes[i].found == 1 && strcmp(arrayOfRoutes[i].typeOfTransport, "Airplane") == 0) {
                 indexForAirplane = i;
             }
-            if (arrayOfRoutes[i].found == 1 && strcmp(routeFileArray[i].typeOfTransport, "Airplane") != 0) {
+            if (arrayOfRoutes[i].found == 1 && strcmp(arrayOfRoutes[i].typeOfTransport, "Airplane") != 0) {
 
                 if (strcmp(timeORCO2, "Time") == 0 ) {
                     compareCalculation(arrayOfRoutes[indexForAirplane].totalTimeBus, arrayOfRoutes[i].totalTimeBus,
-                                       routeFileArray[indexForAirplane].typeOfTransport, routeFileArray[i].typeOfTransport, 1);
+                                       arrayOfRoutes[indexForAirplane].typeOfTransport, arrayOfRoutes[i].typeOfTransport, 1);
 
 
                 } else if (strcmp(timeORCO2, "CO2") == 0 ) {
 
                     compareCalculation(arrayOfRoutes[indexForAirplane].totalTravelCO2, arrayOfRoutes[i].totalTravelCO2,
-                                       routeFileArray[indexForAirplane].typeOfTransport, routeFileArray[i].typeOfTransport, 0);
+                                       arrayOfRoutes[indexForAirplane].typeOfTransport, arrayOfRoutes[i].typeOfTransport, 0);
 
                 } else {
                     printf("something went wrong");
@@ -140,12 +137,11 @@ void compareCalculation(int airplane, int train, char typeOfTransportA[], char t
 /**
  * Function which calls scanNumber, scanChar, transport, transportC02print and comparison.
  * It creates the overall structure for this part of the program which can be called to main.
- * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes Time and CO2.
- * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes Time, CO2 and typeOfTransport.
  * @param arrivalCity Takes in an arrival city.
  * @param departureCity Takes in an departure city.
  */
-void transportToNodes(route_t arrayOfRoutes[], routeFile_t routeFileArray[], char arrivalCity[], char departureCity[]) {
+void transportToNodes(route_t arrayOfRoutes[], char arrivalCity[], char departureCity[]) {
     char luggage[10];
     int distanceFromStation, distanceFromAirport; //Initializing distance to calculate from the different nodes
 
@@ -163,17 +159,17 @@ void transportToNodes(route_t arrayOfRoutes[], routeFile_t routeFileArray[], cha
     printf("\n                     Total travel time from %s to %s       \n", departureCity, arrivalCity);
     printf("---------------------------------------------------------------------------------\n\n");
 
-    transport(arrayOfRoutes, routeFileArray, distanceFromStation, "IC", luggage, 0, 0);
-    transport(arrayOfRoutes, routeFileArray, distanceFromStation, "ICL", luggage, 0, 0);
-    transport(arrayOfRoutes, routeFileArray, distanceFromAirport, "Airplane", luggage, 90, 30);
+    transport(arrayOfRoutes, distanceFromStation, "IC", luggage, 0, 0);
+    transport(arrayOfRoutes, distanceFromStation, "ICL", luggage, 0, 0);
+    transport(arrayOfRoutes, distanceFromAirport, "Airplane", luggage, 90, 30);
 
-    comparison(arrayOfRoutes, routeFileArray, "Time");
+    comparison(arrayOfRoutes, "Time");
 
 
     printf("\n                     Total CO2 from %s to %s       \n", departureCity, arrivalCity);
     printf("---------------------------------------------------------------------------------\n");
 
-    transportCO2print(arrayOfRoutes, routeFileArray);
+    transportCO2print(arrayOfRoutes);
 
-    comparison(arrayOfRoutes, routeFileArray, "CO2");
+    comparison(arrayOfRoutes, "CO2");
 }

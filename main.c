@@ -43,22 +43,22 @@ int main() {
     displayInfo();//Printing the second interface that the user will receive about the details they will get
 
 
-    scanChar(departureCity,cityChoices,50,"Please enter your departure\n");
+    scanChar(departureCity,cityChoices,numberOfStrings,"Please enter your departure\n");
 
     arrayOfStrings_t arrivalChoice[numberOfStrings];
     arrivalChoices(arrayOfRouteFiles, arrayOfRoutes,  departureCity, cityChoices, arrivalChoice);
     printChoices(arrivalChoice);
 
-    scanChar(arrivalCity,arrivalChoice,50,"Please enter your arrival city\n");
+    scanChar(arrivalCity,arrivalChoice,numberOfStrings,"Please enter your arrival city\n");
 
     searchRoutes(arrivalCity, departureCity, arrayOfRoutes, arrayOfRouteFiles); //Reading the list
 
-    co2Multiplier(arrayOfRouteFiles, arrayOfRoutes);//Finding the CO2 emission for different types of transportation
+    co2Multiplier(arrayOfRoutes);//Finding the CO2 emission for different types of transportation
 
-    transportToNodes(arrayOfRoutes,  arrayOfRouteFiles, arrivalCity, departureCity);
+    transportToNodes(arrayOfRoutes, arrivalCity, departureCity);
     //Calculating whether the user will be directly at the station/airport or if they are using a bus
 
-    advancedDetails(arrayOfRoutes,arrayOfRouteFiles);//In this section we explain in more details how the calculations went through it.
+    advancedDetails(arrayOfRoutes);//In this section we explain in more details how the calculations went through it.
 
     return 0;
 }

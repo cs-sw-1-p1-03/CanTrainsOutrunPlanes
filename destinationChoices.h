@@ -10,7 +10,7 @@ typedef struct {
 
 /**
  * Function to create a list of choices to choose when choosing departure city
- * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes file length.
  * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes array of struct routeIntervals -> list.departureCity
  * @param cityChoices Returns an array of strings for possible cities to choose from.
  */
@@ -40,7 +40,7 @@ void destinationChoices(routeFile_t routeFileArray[], route_t arrayOfRoutes[], a
 }
 /**
  * Function to create arrivalChoices for possible routes of the input departureCity.
- * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes fileName, length and TypeOfTransport.
+ * @param routeFileArray An array of the struct routeFile_t from getArrayOfRoutes.Includes file length.
  * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes array of struct routeIntervals -> list.departureCity
  * @param departureCity The chosen input string from user.
  * @param cityChoices  An array of strings for all cities.
