@@ -37,21 +37,21 @@ int main() {
     displayWelcome();//Printing the first interface that the user will receive
 
     arrayOfStrings_t cityChoices[numberOfStrings];
-    destinationChoices(arrayOfRouteFiles, arrayOfRoutes,  cityChoices);
-    printChoices(cityChoices);
+    destinationChoices(arrayOfRouteFiles, arrayOfRoutes,  cityChoices); //Gets possible cities to travel from
+    printChoices(cityChoices); //prints those cities
 
     displayInfo();//Printing the second interface that the user will receive about the details they will get
 
 
-    scanChar(departureCity,cityChoices,numberOfStrings,"Please enter your departure\n");
+    scanChar(departureCity,cityChoices,numberOfStrings,"Please enter your departure\n"); // Reads input from console and checks if input is a valid option
 
-    arrayOfStrings_t arrivalChoice[numberOfStrings];
-    arrivalChoices(arrayOfRouteFiles, arrayOfRoutes,  departureCity, cityChoices, arrivalChoice);
-    printChoices(arrivalChoice);
+    arrayOfStrings_t arrivalChoice[numberOfStrings]; //Constructs a new array of strings
+    arrivalChoices(arrayOfRouteFiles, arrayOfRoutes,  departureCity, cityChoices, arrivalChoice); //Gets possible cities to travel to
+    printChoices(arrivalChoice); //prints those cities
 
-    scanChar(arrivalCity,arrivalChoice,numberOfStrings,"Please enter your arrival city\n");
+    scanChar(arrivalCity,arrivalChoice,numberOfStrings,"Please enter your arrival city\n"); // Reads input from console and checks if input is a valid option
 
-    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, arrayOfRouteFiles); //Reading the list
+    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, arrayOfRouteFiles); //Checking the list for a route and printing it
 
     co2Multiplier(arrayOfRoutes);//Finding the CO2 emission for different types of transportation
 
