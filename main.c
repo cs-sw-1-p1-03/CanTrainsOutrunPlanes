@@ -7,65 +7,58 @@
 #include "getArrayOfRoutes.h"
 #include "searchRoutes.h"
 #include "emissionCalculator.h"
-#include "transportToNodes.h"
 #include "advancedDetails.h"
 #include "destinationChoices.h"
 #include "failSafe.h"
+#include "transportToNodes.h"
 
-//void searchRoutes(char arrivalCity[], char departureCity[], list_t arrayOfRoutes[], int totalRoutes);
+#define maxCharacters 20
+#define numberOfStrings 50
 
 int main() {
     //Interface function
-    char departureCity[20]; // Assigning amount of characters, it does not scan properly otherwise
-    char arrivalCity[20];   //                           --||--
-    int totalRoutes = 9;
+    char departureCity[maxCharacters]; // Assigning amount of characters, it does not scan properly otherwise
+    char arrivalCity[maxCharacters];   //                           --||--
 
-    //array for routes
-    route_t arrayOfRoutes[totalRoutes];//Initializing a static array with the size of totalRoutes
-    //The list is defined as an array of arrays(routeIntervals_t)
-    //This list is empty
+    char *routeFileNames[numberOfStrings] = {"FlightDistances.txt", "IC CPH SDG.txt", "ICL CPH AAL.txt",
+                                "ICL CPH SDG.txt", "IC CPH AAL.txt", "IC CPH BLL.txt",
+                                "ICL CPH BLL.txt", "ICL CPH KRP.txt", "IC CPH KRP.txt"};
 
-    routeFile_t routes[totalRoutes]; //Creating an empty array of routes
-    defineFiles2(routes,totalRoutes); //Filling it up
-
-    /* This would be optimal
-    for (int i = 0; i < totalRoutes;i++) {
-        openFile(routes[i]);
-        createArrayOfRoute(arrayOfRoutes[i],routes[i]); //Fulfilling the list with the void function
-        closeFile(routes[i]);
-    }*/
-    //What works
-    createArrayOfRoutes(arrayOfRoutes,totalRoutes,routes);
+    int routeFileLength[] = {5,13,12,9,16,14,10,13,17};
 
 
-    interFace1();//Printing the first interfae that the user will recieve
+    int NoR = sizeof(routeFileLength) / sizeof(int);
+
+    route_t arrayOfRoutes[NoR];
+    routeFile_t arrayOfRouteFiles[NoR];
+
+    initializeArrayOfRoutes(arrayOfRoutes, arrayOfRouteFiles, routeFileNames, routeFileLength, NoR);
+
+    displayWelcome();//Printing the first interface that the user will receive
+
+    arrayOfStrings_t cityChoices[numberOfStrings];
+    destinationChoices(arrayOfRouteFiles, arrayOfRoutes,  cityChoices); //Gets possible cities to travel from
+    printChoices(cityChoices); //prints those cities
+
+    displayInfo();//Printing the second interface that the user will receive about the details they will get
 
 
-    arrayOfStrings_t cityChoices[50];
-    destinationChoices(routes, arrayOfRoutes, totalRoutes,  cityChoices);
-    printChoices(cityChoices);
+    scanChar(departureCity,cityChoices,numberOfStrings,"Please enter your departure\n"); // Reads input from console and checks if input is a valid option
 
+    arrayOfStrings_t arrivalChoice[numberOfStrings]; //Constructs a new array of strings
+    arrivalChoices(arrayOfRouteFiles, arrayOfRoutes,  departureCity, cityChoices, arrivalChoice); //Gets possible cities to travel to
+    printChoices(arrivalChoice); //prints those cities
 
-    interFace2();//Printing the second interface that the user will receive about the details they will get
+    scanChar(arrivalCity,arrivalChoice,numberOfStrings,"Please enter your arrival city\n"); // Reads input from console and checks if input is a valid option
 
+    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, arrayOfRouteFiles); //Checking the list for a route and printing it
 
-    failsafeCityChoice(departureCity, cityChoices);
+    co2Multiplier(arrayOfRoutes);//Finding the CO2 emission for different types of transportation
 
-    arrayOfStrings_t arrivalChoice[50];
-    arrivalChoices(routes,arrayOfRoutes,totalRoutes, departureCity, cityChoices, arrivalChoice);
-    printChoices( arrivalChoice);
+    transportToNodes(arrayOfRoutes, arrivalCity, departureCity);
+    //Calculating whether the user will be directly at the station/airport or if they are using a bus
 
-    failsafeCityChoice(arrivalCity,arrivalChoice);
+    advancedDetails(arrayOfRoutes);//In this section we explain in more details how the calculations went through it.
 
-
-    searchRoutes(arrivalCity, departureCity, arrayOfRoutes, routes, totalRoutes); //Reading the list
-
-    co2Multiplier(routes, arrayOfRoutes, totalRoutes);//Finding the CO2 emission for different types of transportation
-
-    transportToNodes(arrayOfRoutes, totalRoutes, routes, arrivalCity, departureCity);//Calculating whether the user will be directly at the station/airport or if they are using a bus
-
-    advancedDetails(arrayOfRoutes, totalRoutes, routes /*, arrivalCity, departureCity*/);//In this section we explain in more details how the calculations went through it.
-
-
-        return 0;
-    }
+    return 0;
+}
