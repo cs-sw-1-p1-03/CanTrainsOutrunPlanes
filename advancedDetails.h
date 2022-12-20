@@ -1,17 +1,14 @@
 /**
  * UI function that prints further details to a given route.
- * @param arrayOfRoutes takes in the entire array of destinations.
- * @param totalRoutes takes in the number of available routes.
- * @param routes takes in the list/array of available routes
+ * @param arrayOfRoutes An array of the struct route_t from getArrayOfRoutes. Includes typeOfTransport
  */
-void advancedDetails(route_t arrayOfRoutes[], int totalRoutes, routeFile_t routes[] /*, char arrivalCity[], char departureCity[]*/){
-
+void advancedDetails(route_t arrayOfRoutes[]) {
     int detail;
-    printf("\n\nPress 1 for advanced details or press 2 to exit");
+
+    printf("\n\nPress 1 for advanced details otherwise exit");
     scanf("%d",&detail);
 
-    if(detail == 1)
-    {
+    if (detail == 1) {
         printf("\n\n                             Advanced details:\n"
                "-------------------------------------------------------------------------------------------------------\n"
                "Travel time for airplanes in Denmark is generally 40 minutes to an hour. \n"
@@ -26,24 +23,23 @@ void advancedDetails(route_t arrayOfRoutes[], int totalRoutes, routeFile_t route
                "______________________________________________________________________________________________________ \n"
                "\n");
 
-        for (int i = 0; i < totalRoutes; i++) {
+        for (int i = 0; i < numberOfRoutes; i++) {
             if (arrayOfRoutes[i].found == 1) {
 
                 printf("type: %s.\n totalTime =  %lf.\n totalDistance =  %lf.\n averageSpeed = %lf\n",
-                       routes[i].typeOfTransport,
+                       arrayOfRoutes[i].typeOfTransport,
                        arrayOfRoutes[i].totalTime,
                        arrayOfRoutes[i].totalDistance, arrayOfRoutes[i].averageSpeed);
-
             }
         }
-            printf("\n----------------------------CO2----------------------------------\n");
-        for (int i = 0; i < totalRoutes; i++) {
+        printf("\n----------------------------CO2----------------------------------\n");
+        for (int i = 0; i < numberOfRoutes; i++) {
             if (arrayOfRoutes[i].found == 1) {
-                if (strcmp(routes[i].typeOfTransport, "IC") == 0) {
+                if (strcmp(arrayOfRoutes[i].typeOfTransport, "IC") == 0) {
 
                     printf("IC -> ");
                     printf("TOTAL: %.2lf grams CO2 per passenger \n", arrayOfRoutes[i].totalCO2);
-                } else if (strcmp(routes[i].typeOfTransport, "ICL") == 0) {
+                } else if (strcmp(arrayOfRoutes[i].typeOfTransport, "ICL") == 0) {
 
                     printf("ICL -> ");
                     printf("TOTAL: %.2lf grams CO2 per passenger \n", arrayOfRoutes[i].totalCO2);
@@ -54,8 +50,7 @@ void advancedDetails(route_t arrayOfRoutes[], int totalRoutes, routeFile_t route
                 }
             }
         }
-    }
-    else{
+    } else {
         EXIT_SUCCESS;
     }
 }

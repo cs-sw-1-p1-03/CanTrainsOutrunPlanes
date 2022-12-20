@@ -1,4 +1,4 @@
-empty CPHAirport
+empty CPHAirport 0 0 0
 CPHAirport CopenhagenH 29.5 24 11.8
 CopenhagenH Ringsted 101.5 35 59.2
 Ringsted Slagelse 105.4 18 31.6
